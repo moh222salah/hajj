@@ -3,431 +3,1385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مناسك الحج Hajj Manasik</title>
+<title>مناسك الحج · Hajj Manasik</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* ══════════════════════════════════════════
+   DESIGN TOKENS & VARIABLES
+══════════════════════════════════════════ */
 :root {
-  --gold:#C9A227; --gold-light:#E8C547; --gold-pale:#F5E199; --gold-dark:#9B7A1C;
-  --navy:#060F1E; --navy-mid:#0D1E36; --navy-card:#112444; --navy-hover:#16305A;
-  --emerald:#1B5E3B; --emerald-light:#2D8653; --emerald-glow:#40A96A;
-  --white:#F9F5E8; --white-muted:#D4CCB0; --text-dim:#8A7D60;
-  --border-gold:rgba(201,162,39,0.35); --border-gold-bright:rgba(201,162,39,0.7);
-  --shadow-gold:0 0 30px rgba(201,162,39,0.12);
-  --font-ar-h: 'Amiri', serif; --font-ar-b: 'Cairo', sans-serif;
-  --font-en-h: 'Cinzel Decorative', serif; --font-en-b: 'Lora', serif;
-  --r:12px; --r-lg:20px;
+  /* Gold palette */
+  --gold-100:#FDF6DC;
+  --gold-200:#F5E199;
+  --gold-300:#E8C547;
+  --gold-400:#C9A227;
+  --gold-500:#9B7A1C;
+  --gold-600:#6B5212;
+  --gold-glow:rgba(201,162,39,0.6);
+  --gold-dim:rgba(201,162,39,0.15);
+  --gold-border:rgba(201,162,39,0.3);
+
+  /* Deep space navy */
+  --navy-950:#03080F;
+  --navy-900:#060F1E;
+  --navy-800:#0A1628;
+  --navy-700:#0D1E36;
+  --navy-600:#112444;
+  --navy-500:#16305A;
+
+  /* Emerald sacred */
+  --emerald-900:#0A2918;
+  --emerald-700:#1B5E3B;
+  --emerald-500:#2D8653;
+  --emerald-300:#40A96A;
+  --emerald-100:#7FD9A8;
+  --emerald-glow:rgba(64,169,106,0.5);
+
+  /* Sacred red */
+  --red-300:#FF8888;
+  --red-dim:rgba(220,60,60,0.2);
+
+  /* Cream */
+  --cream:#F9F5E8;
+  --cream-muted:#D4CCB0;
+  --cream-dim:#8A7D60;
+
+  /* Typography */
+  --font-quran:'Amiri Quran','Amiri',serif;
+  --font-ar-display:'Noto Naskh Arabic','Amiri',serif;
+  --font-ar-body:'Cairo',sans-serif;
+  --font-en-display:'Cinzel Decorative','Playfair Display',serif;
+  --font-en-body:'Playfair Display',serif;
+
+  /* Spacing & Radius */
+  --r-sm:8px; --r:14px; --r-lg:22px; --r-xl:32px;
+
+  /* Shadows */
+  --shadow-gold:0 0 40px rgba(201,162,39,0.15),0 4px 24px rgba(0,0,0,0.4);
+  --shadow-deep:0 8px 48px rgba(0,0,0,0.5);
+  --shadow-card:0 2px 16px rgba(0,0,0,0.3);
+
+  /* Transitions */
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
 }
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--navy);color:var(--white);font-family:var(--font-ar-b);overflow-x:hidden;line-height:1.8}
-.en body{font-family:var(--font-en-b)}
-
-/* ── GEOMETRIC BACKGROUND PATTERN ── */
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;opacity:0.04;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='0.8'%3E%3Cpolygon points='60,5 74,40 112,40 82,62 93,98 60,78 27,98 38,62 8,40 46,40'/%3E%3Cpolygon points='60,18 71,45 100,45 77,60 86,88 60,72 34,88 43,60 20,45 49,45'/%3E%3Ccircle cx='60' cy='60' r='52'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Cline x1='60' y1='5' x2='60' y2='115'/%3E%3Cline x1='5' y1='60' x2='115' y2='60'/%3E%3Cline x1='18' y1='18' x2='102' y2='102'/%3E%3Cline x1='102' y1='18' x2='18' y2='102'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:120px 120px;pointer-events:none;
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--navy-950);
+  color:var(--cream);
+  font-family:var(--font-ar-body);
+  overflow-x:hidden;
+  line-height:1.85;
 }
-.content-wrap{position:relative;z-index:1}
+.en body,.en{font-family:var(--font-en-body)}
+img{display:block;max-width:100%}
 
-/* ── HEADER ── */
+/* ══════════════════════════════════════════
+   CINEMATIC BACKGROUND SYSTEM
+══════════════════════════════════════════ */
+.bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  overflow:hidden;pointer-events:none;
+}
+
+/* Deep desert night sky gradient */
+.bg-canvas::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(15,30,60,0.9) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 100%, rgba(27,94,59,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 100% at 20% 80%, rgba(201,162,39,0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #020810 0%, #060F1E 30%, #080D1A 60%, #040B15 100%);
+}
+
+/* Islamic geometric tessellation */
+.bg-geo{
+  position:absolute;inset:0;
+  opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cdefs%3E%3Cpattern id='star8' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='0.7'%3E%3Cpolygon points='50,4 61,35 95,35 67,57 78,88 50,68 22,88 33,57 5,35 39,35'/%3E%3Cpolygon points='50,15 59,38 83,38 64,52 71,75 50,61 29,75 36,52 17,38 41,38'/%3E%3Ccircle cx='50' cy='50' r='45'/%3E%3Ccircle cx='50' cy='50' r='24'/%3E%3Cline x1='50' y1='4' x2='50' y2='96'/%3E%3Cline x1='4' y1='50' x2='96' y2='50'/%3E%3Cline x1='14' y1='14' x2='86' y2='86'/%3E%3Cline x1='86' y1='14' x2='14' y2='86'/%3E%3Cline x1='4' y1='50' x2='50' y2='4'/%3E%3Cline x1='96' y1='50' x2='50' y2='96'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23star8)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  animation:geo-drift 120s linear infinite;
+}
+@keyframes geo-drift{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(20px,20px) rotate(0.5deg)}}
+
+/* Particle stars */
+.bg-stars{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 5%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 15%, rgba(201,162,39,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 8%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 35%, rgba(201,162,39,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 25% 60%, rgba(201,162,39,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 65%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 20% 80%, rgba(201,162,39,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 88%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  animation:twinkle 8s ease-in-out infinite alternate;
+}
+@keyframes twinkle{0%{opacity:0.6}50%{opacity:1}100%{opacity:0.7}}
+
+/* Sand texture overlay */
+.bg-sand{
+  position:absolute;inset:0;
+  opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1' fill='%23C9A227'/%3E%3C/svg%3E");
+  background-size:256px 256px;
+}
+
+/* Golden horizon glow at base */
+.bg-horizon{
+  position:absolute;bottom:0;left:0;right:0;
+  height:40vh;
+  background:linear-gradient(0deg, rgba(201,162,39,0.04) 0%, transparent 100%);
+  pointer-events:none;
+}
+
+/* Kaaba Mecca silhouette at the bottom of hero */
+.bg-mecca-silhouette{
+  position:absolute;
+  bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:min(900px,100%);
+  height:45vh;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 400' fill='none'%3E%3C!-- Masjid Haram skyline silhouette --%3E%3Cpath d='M0 400 L0 280 Q30 270 60 260 L80 220 L90 180 L100 220 L120 260 L150 260 L150 200 L155 170 L160 200 L160 260 L200 260 L200 240 Q220 230 240 220 L260 240 L280 240 L285 210 L290 190 L295 210 L300 240 L320 240 L340 230 L360 200 L365 170 L380 140 L390 110 L400 90 L405 80 L410 90 L420 110 L430 140 L445 170 L450 200 L455 230 L460 240 L480 240 L500 210 L510 190 L520 210 L530 240 L550 240 L570 220 L590 240 L620 240 L640 200 L645 170 L650 200 L650 260 L690 260 L700 240 L720 240 L730 230 L740 200 L745 170 L750 200 L750 240 L760 260 L790 260 L800 200 L810 170 L820 200 L830 260 L870 260 L880 240 L900 250 L900 400 Z' fill='rgba(6,15,30,0.8)'/%3E%3C!-- Minarets --%3E%3Crect x='385' y='30' width='8' height='100' fill='rgba(201,162,39,0.15)' rx='2'/%3E%3Crect x='507' y='30' width='8' height='100' fill='rgba(201,162,39,0.15)' rx='2'/%3E%3Cellipse cx='389' cy='28' rx='6' ry='8' fill='rgba(201,162,39,0.2)'/%3E%3Cellipse cx='511' cy='28' rx='6' ry='8' fill='rgba(201,162,39,0.2)'/%3E%3C!-- Kaaba center glow --%3E%3Cellipse cx='450' cy='200' rx='60' ry='30' fill='rgba(201,162,39,0.04)'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:bottom center;
+  background-size:contain;
+  opacity:0.6;
+  pointer-events:none;
+}
+
+/* ══════════════════════════════════════════
+   SCROLL PROGRESS INDICATOR
+══════════════════════════════════════════ */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:2.5px;z-index:500;
+  background:linear-gradient(90deg,
+    var(--gold-500) 0%,
+    var(--gold-300) 40%,
+    var(--emerald-300) 70%,
+    var(--gold-300) 100%);
+  box-shadow:0 0 10px var(--gold-glow);
+  transition:width 0.08s linear;
+}
+
+/* ══════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════ */
 header{
-  position:sticky;top:0;z-index:100;
-  background:linear-gradient(180deg,rgba(6,15,30,0.98) 0%,rgba(6,15,30,0.92) 100%);
-  backdrop-filter:blur(12px);border-bottom:1px solid var(--border-gold);
-  padding:0 clamp(1rem,4vw,3rem);
+  position:sticky;top:0;z-index:200;
+  background:linear-gradient(180deg,
+    rgba(3,8,15,0.97) 0%,
+    rgba(6,15,30,0.92) 100%);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--gold-border);
+  padding:0 clamp(1rem,5vw,3rem);
+  transition:all 0.3s var(--ease);
 }
-.header-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-star{width:36px;height:36px;flex-shrink:0}
-.logo-text{font-family:var(--font-ar-h);font-size:1.3rem;color:var(--gold-light);font-weight:700}
-.en .logo-text{font-family:var(--font-en-h);font-size:0.9rem}
-.header-actions{display:flex;align-items:center;gap:12px}
-.lang-btn{
-  background:var(--border-gold);border:1px solid var(--border-gold-bright);
-  color:var(--gold-light);padding:6px 18px;border-radius:30px;cursor:pointer;
-  font-family:var(--font-ar-b);font-size:0.9rem;transition:all 0.3s;
-  display:flex;align-items:center;gap:6px;
+header.scrolled{
+  box-shadow:0 4px 30px rgba(0,0,0,0.5);
 }
-.lang-btn:hover{background:var(--gold-dark);color:var(--white)}
-.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--emerald-glow));z-index:200;transition:width 0.1s}
+.header-inner{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  height:68px;max-width:1400px;margin:0 auto;
+}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:80px clamp(1rem,5vw,4rem) 60px;
-  position:relative;
+/* Logo */
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo-icon{
+  width:42px;height:42px;flex-shrink:0;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  transition:all 0.4s var(--ease);
 }
-.hero-kaaba{margin-bottom:2rem;animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero-badge{
-  display:inline-block;background:rgba(201,162,39,0.15);border:1px solid var(--border-gold-bright);
-  color:var(--gold-light);padding:6px 24px;border-radius:30px;font-size:0.85rem;
-  margin-bottom:1.5rem;letter-spacing:2px;
-}
-.hero h1{
-  font-family:var(--font-ar-h);font-size:clamp(2.8rem,7vw,5.5rem);
-  color:var(--gold-light);line-height:1.2;margin-bottom:1rem;
-  text-shadow:0 0 60px rgba(201,162,39,0.4);
-}
-.en .hero h1{font-family:var(--font-en-h);font-size:clamp(1.8rem,4vw,3rem)}
-.hero h2{
-  font-family:var(--font-en-h);font-size:clamp(1rem,2.5vw,1.6rem);
-  color:var(--white-muted);margin-bottom:1.5rem;letter-spacing:3px;font-weight:400;
-}
-.ar .hero h2{display:none}.en .hero .ar-subtitle{display:none}
-.ar-subtitle{font-family:var(--font-ar-h);font-size:clamp(1rem,2.5vw,1.5rem);color:var(--white-muted);margin-bottom:1.5rem}
-.hero-desc{
-  max-width:680px;font-size:1.05rem;color:var(--white-muted);line-height:2;
-  margin-bottom:2.5rem;
-}
-.hero-stats{
-  display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;
-}
-.stat-box{
-  background:rgba(201,162,39,0.08);border:1px solid var(--border-gold);
-  border-radius:var(--r);padding:1rem 1.5rem;min-width:120px;text-align:center;
-}
-.stat-num{font-size:1.8rem;font-weight:700;color:var(--gold-light);font-family:var(--font-ar-h)}
-.stat-label{font-size:0.8rem;color:var(--white-muted);margin-top:4px}
-.hero-scroll{
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  color:var(--gold-dark);font-size:0.8rem;animation:bounce 2s infinite;
-}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-.scroll-arrow{width:24px;height:24px;border-right:2px solid var(--gold-dark);border-bottom:2px solid var(--gold-dark);transform:rotate(45deg)}
-
-/* ── SECTION COMMON ── */
-section{padding:80px clamp(1rem,5vw,4rem);max-width:1200px;margin:0 auto}
-.section-header{text-align:center;margin-bottom:3rem}
-.section-tag{
-  display:inline-block;color:var(--gold);font-size:0.8rem;letter-spacing:3px;
-  margin-bottom:0.8rem;text-transform:uppercase;
-}
-.section-title{
-  font-family:var(--font-ar-h);font-size:clamp(1.8rem,4vw,2.8rem);
-  color:var(--gold-light);margin-bottom:0.8rem;
-}
-.en .section-title{font-family:var(--font-en-h);font-size:clamp(1.2rem,2.5vw,1.8rem)}
-.section-line{
-  width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  margin:1rem auto;
-}
-.section-sub{color:var(--white-muted);font-size:0.95rem;max-width:600px;margin:0 auto}
-
-/* ── OVERVIEW CARDS ── */
-.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
-.ov-card{
-  background:var(--navy-card);border:1px solid var(--border-gold);border-radius:var(--r-lg);
-  padding:2rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden;
-}
-.ov-card::before{
-  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-  background:radial-gradient(ellipse at center,rgba(201,162,39,0.06) 0%,transparent 70%);
+.logo-icon::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle,rgba(201,162,39,0.2) 0%,transparent 70%);
   opacity:0;transition:opacity 0.3s;
 }
-.ov-card:hover::before{opacity:1}
-.ov-card:hover{border-color:var(--border-gold-bright);transform:translateY(-4px);box-shadow:var(--shadow-gold)}
-.ov-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
-.ov-title{font-size:1.1rem;color:var(--gold-light);margin-bottom:0.5rem;font-weight:700}
-.ov-text{font-size:0.9rem;color:var(--white-muted);line-height:1.7}
+.logo:hover .logo-icon{border-color:var(--gold-400);box-shadow:0 0 20px var(--gold-glow)}
+.logo:hover .logo-icon::before{opacity:1}
+.logo-text{
+  font-family:var(--font-ar-display);
+  font-size:1.25rem;
+  color:var(--gold-300);
+  font-weight:700;
+  letter-spacing:0.02em;
+  line-height:1.2;
+}
+.en .logo-text{font-family:var(--font-en-display);font-size:0.85rem;letter-spacing:1px}
 
-/* ── PILLARS ── */
-.pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+/* Nav */
+.header-nav{
+  display:flex;align-items:center;gap:8px;
+}
+.lang-btn{
+  display:flex;align-items:center;gap:8px;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  color:var(--gold-300);
+  padding:8px 20px;border-radius:100px;
+  cursor:pointer;
+  font-family:var(--font-ar-body);
+  font-size:0.9rem;
+  transition:all 0.3s var(--ease);
+  white-space:nowrap;
+}
+.lang-btn:hover{
+  background:rgba(201,162,39,0.25);
+  border-color:var(--gold-400);
+  color:var(--gold-100);
+  box-shadow:0 0 20px rgba(201,162,39,0.2);
+  transform:translateY(-1px);
+}
+.lang-globe{
+  width:18px;height:18px;
+  border:1.5px solid currentColor;
+  border-radius:50%;
+  position:relative;
+  flex-shrink:0;
+}
+.lang-globe::before{
+  content:'';
+  position:absolute;top:50%;left:0;right:0;
+  height:1px;background:currentColor;
+  transform:translateY(-50%);
+}
+.lang-globe::after{
+  content:'';
+  position:absolute;top:0;bottom:0;left:50%;
+  width:1px;background:currentColor;
+  transform:translateX(-50%);
+}
+
+/* ══════════════════════════════════════════
+   CONTENT WRAPPER
+══════════════════════════════════════════ */
+.content-wrap{position:relative;z-index:1}
+
+/* ══════════════════════════════════════════
+   HERO SECTION
+══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:100px clamp(1rem,5vw,4rem) 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Central glow effect */
+.hero::before{
+  content:'';
+  position:absolute;
+  top:20%;left:50%;transform:translateX(-50%);
+  width:min(800px,100%);height:500px;
+  background:radial-gradient(ellipse at center,
+    rgba(201,162,39,0.08) 0%,
+    rgba(27,94,59,0.05) 40%,
+    transparent 70%);
+  pointer-events:none;
+}
+
+/* Ayah badge */
+.hero-ayah-card{
+  background:linear-gradient(135deg,
+    rgba(201,162,39,0.1) 0%,
+    rgba(27,94,59,0.08) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg);
+  padding:clamp(1rem,3vw,2rem) clamp(1.5rem,5vw,3rem);
+  margin-bottom:3rem;
+  position:relative;
+  overflow:hidden;
+  max-width:min(680px,90vw);
+  backdrop-filter:blur(10px);
+}
+.hero-ayah-card::before{
+  content:'';position:absolute;
+  top:0;left:50%;transform:translateX(-50%);
+  width:60%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+}
+.hero-ayah-card::after{
+  content:'';position:absolute;
+  bottom:0;left:50%;transform:translateX(-50%);
+  width:60%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+}
+.ayah-arabic{
+  font-family:var(--font-quran);
+  font-size:clamp(1.3rem,4vw,1.9rem);
+  color:var(--gold-200);
+  line-height:2.2;
+  margin-bottom:0.8rem;
+  direction:rtl;
+}
+.ayah-translation{
+  font-family:var(--font-en-body);
+  font-style:italic;
+  color:var(--cream-muted);
+  font-size:clamp(0.85rem,2vw,1rem);
+  line-height:1.7;
+}
+.ayah-ref{
+  font-size:0.75rem;color:var(--cream-dim);
+  margin-top:0.5rem;letter-spacing:1px;
+}
+
+/* Main heading */
+.hero-title-wrap{margin-bottom:2.5rem}
+.hero-h1{
+  font-family:var(--font-ar-display);
+  font-size:clamp(3.5rem,10vw,7.5rem);
+  color:var(--gold-300);
+  line-height:1.15;
+  text-shadow:
+    0 0 80px rgba(201,162,39,0.5),
+    0 0 160px rgba(201,162,39,0.2);
+  margin-bottom:0.3rem;
+  animation:title-glow 4s ease-in-out infinite alternate;
+}
+@keyframes title-glow{
+  0%{text-shadow:0 0 80px rgba(201,162,39,0.4),0 0 160px rgba(201,162,39,0.15)}
+  100%{text-shadow:0 0 100px rgba(201,162,39,0.6),0 0 200px rgba(201,162,39,0.25),0 0 300px rgba(201,162,39,0.1)}
+}
+.en .hero-h1{font-family:var(--font-en-display);font-size:clamp(2rem,5vw,4rem)}
+.hero-subtitle{
+  font-family:var(--font-en-display);
+  font-size:clamp(0.8rem,2vw,1.1rem);
+  color:var(--cream-dim);
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+/* Stats row */
+.hero-stats{
+  display:flex;gap:clamp(0.5rem,2vw,1.5rem);
+  justify-content:center;flex-wrap:wrap;
+  margin-bottom:3.5rem;
+}
+.stat-card{
+  background:linear-gradient(145deg,
+    rgba(201,162,39,0.1) 0%,
+    rgba(6,15,30,0.6) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r);
+  padding:clamp(0.8rem,2vw,1.2rem) clamp(1rem,3vw,1.8rem);
+  min-width:100px;text-align:center;
+  transition:all 0.4s var(--ease-bounce);
+  position:relative;overflow:hidden;
+  cursor:default;
+}
+.stat-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.stat-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold-400);
+  box-shadow:var(--shadow-gold);
+}
+.stat-card:hover::before{opacity:1}
+.stat-num{
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  font-weight:700;
+  color:var(--gold-300);
+  font-family:var(--font-ar-display);
+  line-height:1.1;
+}
+.stat-label{
+  font-size:0.75rem;
+  color:var(--cream-muted);
+  margin-top:4px;
+  letter-spacing:0.5px;
+}
+
+/* Scroll indicator */
+.hero-scroll{
+  display:flex;flex-direction:column;
+  align-items:center;gap:10px;
+  color:var(--gold-500);font-size:0.8rem;
+  letter-spacing:2px;
+  animation:scroll-bounce 2.5s ease-in-out infinite;
+}
+@keyframes scroll-bounce{
+  0%,100%{transform:translateY(0);opacity:0.6}
+  50%{transform:translateY(10px);opacity:1}
+}
+.scroll-chevron{
+  width:20px;height:20px;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform:rotate(45deg);
+}
+
+/* ══════════════════════════════════════════
+   SECTION COMMONS
+══════════════════════════════════════════ */
+section{
+  padding:clamp(60px,8vw,100px) clamp(1rem,5vw,4rem);
+  max-width:1300px;margin:0 auto;
+}
+section.full-width{max-width:none}
+
+.section-header{text-align:center;margin-bottom:clamp(2rem,5vw,3.5rem)}
+.section-tag{
+  display:inline-block;
+  color:var(--gold-400);
+  font-size:0.72rem;
+  letter-spacing:4px;
+  margin-bottom:0.8rem;
+  text-transform:uppercase;
+  font-family:var(--font-en-display);
+  font-weight:400;
+}
+.section-title{
+  font-family:var(--font-ar-display);
+  font-size:clamp(1.8rem,4vw,3rem);
+  color:var(--gold-200);
+  margin-bottom:0.5rem;
+  line-height:1.3;
+}
+.en .section-title{font-family:var(--font-en-display);font-size:clamp(1.2rem,2.5vw,1.9rem)}
+.section-ornament{
+  display:flex;align-items:center;gap:12px;
+  justify-content:center;margin:1rem 0;
+}
+.section-ornament::before,.section-ornament::after{
+  content:'';flex:1;max-width:80px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400));
+}
+.section-ornament::after{
+  background:linear-gradient(270deg,transparent,var(--gold-400));
+}
+.ornament-gem{
+  width:8px;height:8px;
+  background:var(--gold-400);
+  transform:rotate(45deg);
+  box-shadow:0 0 8px var(--gold-glow);
+}
+.section-sub{
+  color:var(--cream-muted);
+  font-size:0.95rem;
+  max-width:640px;
+  margin:0 auto;
+  line-height:2;
+}
+
+/* Section divider */
+.section-sep{
+  width:min(800px,90%);
+  margin:0 auto;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-border),transparent);
+}
+
+/* ══════════════════════════════════════════
+   OVERVIEW CARDS
+══════════════════════════════════════════ */
+.overview-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+}
+.ov-card{
+  background:linear-gradient(145deg,
+    rgba(17,36,68,0.8) 0%,
+    rgba(6,15,30,0.6) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg);
+  padding:2rem 1.8rem;
+  text-align:center;
+  transition:all 0.4s var(--ease);
+  position:relative;overflow:hidden;
+  cursor:default;
+  backdrop-filter:blur(8px);
+}
+.ov-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,162,39,0.08) 0%,transparent 70%);
+  opacity:0;transition:opacity 0.4s;
+}
+.ov-card::after{
+  content:'';position:absolute;
+  top:0;left:50%;transform:translateX(-50%);
+  width:50%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.ov-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(201,162,39,0.6);
+  box-shadow:var(--shadow-gold);
+}
+.ov-card:hover::before,.ov-card:hover::after{opacity:1}
+.ov-icon-wrap{
+  width:64px;height:64px;
+  margin:0 auto 1.2rem;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+  transition:all 0.4s var(--ease-bounce);
+}
+.ov-card:hover .ov-icon-wrap{
+  transform:scale(1.15);
+  box-shadow:0 0 20px var(--gold-glow);
+  border-color:var(--gold-400);
+}
+.ov-title{
+  font-size:1.05rem;
+  color:var(--gold-300);
+  margin-bottom:0.6rem;
+  font-weight:700;
+  font-family:var(--font-ar-display);
+}
+.en .ov-title{font-family:var(--font-en-display);font-size:0.85rem}
+.ov-text{font-size:0.88rem;color:var(--cream-muted);line-height:1.8}
+
+/* ══════════════════════════════════════════
+   PILLARS GRID
+══════════════════════════════════════════ */
+.pillars-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.2rem;
+}
 .pillar-card{
-  background:linear-gradient(135deg,var(--navy-card),var(--navy-mid));
-  border:1px solid var(--border-gold);border-radius:var(--r);padding:1.5rem;
+  background:linear-gradient(145deg,
+    rgba(17,36,68,0.8) 0%,
+    rgba(8,14,26,0.9) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r);
+  padding:1.8rem 1.5rem 1.5rem;
+  position:relative;overflow:hidden;
+  transition:all 0.3s var(--ease);
+}
+.pillar-card::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold-500),var(--gold-300),var(--gold-500));
+  opacity:0;transition:opacity 0.3s;
+}
+.pillar-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(201,162,39,0.5);
+  box-shadow:var(--shadow-gold);
+}
+.pillar-card:hover::before{opacity:1}
+.pillar-num{
+  position:absolute;top:-10px;
+  font-size:5rem;font-weight:900;
+  color:rgba(201,162,39,0.06);
+  font-family:var(--font-en-display);
+  line-height:1;
+  right:16px;
+}
+.ar .pillar-num,.ar.pillar-num{right:auto;left:16px}
+.pillar-badge{
+  display:inline-flex;align-items:center;
+  font-size:0.68rem;padding:3px 12px;border-radius:100px;margin-bottom:10px;
+  font-weight:700;letter-spacing:0.5px;
+}
+.badge-fard{background:rgba(220,60,60,0.2);color:#FF9999;border:1px solid rgba(220,60,60,0.4)}
+.badge-wajib{background:rgba(255,165,0,0.2);color:#FFD080;border:1px solid rgba(255,165,0,0.4)}
+.badge-sunnah{background:rgba(40,180,100,0.2);color:#80FFB0;border:1px solid rgba(40,180,100,0.4)}
+.pillar-title{
+  font-size:1.1rem;color:var(--gold-300);
+  font-weight:700;margin-bottom:0.5rem;
+  font-family:var(--font-ar-display);
+}
+.en .pillar-title{font-family:var(--font-en-display);font-size:0.85rem}
+.pillar-sub{font-size:0.84rem;color:var(--cream-muted);line-height:1.7}
+
+/* ══════════════════════════════════════════
+   MIQAT CARDS
+══════════════════════════════════════════ */
+.miqat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.2rem;
+}
+.miqat-card{
+  background:rgba(17,36,68,0.6);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r);
+  padding:1.5rem;
+  display:flex;gap:1.2rem;align-items:flex-start;
+  transition:all 0.3s var(--ease);
+  backdrop-filter:blur(8px);
+}
+.miqat-card:hover{
+  background:rgba(22,48,90,0.8);
+  transform:translateY(-3px);
+  border-color:rgba(201,162,39,0.5);
+  box-shadow:var(--shadow-card);
+}
+.miqat-icon{
+  width:48px;height:48px;flex-shrink:0;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  transition:all 0.3s;
+}
+.miqat-card:hover .miqat-icon{
+  border-color:var(--gold-400);
+  box-shadow:0 0 12px rgba(201,162,39,0.25);
+}
+.miqat-info h4{color:var(--gold-300);font-size:1rem;margin-bottom:5px;font-weight:700}
+.miqat-info p{color:var(--cream-muted);font-size:0.84rem;line-height:1.7}
+
+/* ══════════════════════════════════════════
+   IHRAM SECTION
+══════════════════════════════════════════ */
+.ihram-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+}
+@media(max-width:768px){.ihram-container{grid-template-columns:1fr}}
+
+.ihram-box{
+  background:linear-gradient(145deg,
+    rgba(17,36,68,0.8) 0%,
+    rgba(6,15,30,0.7) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg);
+  padding:2rem 1.8rem;
+  backdrop-filter:blur(8px);
+  transition:border-color 0.3s;
+}
+.ihram-box:hover{border-color:rgba(201,162,39,0.5)}
+.ihram-box h3{
+  color:var(--gold-300);
+  font-family:var(--font-ar-display);
+  font-size:1.3rem;
+  margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:10px;
+}
+.en .ihram-box h3{font-family:var(--font-en-display);font-size:0.95rem}
+.ihram-box ul{list-style:none;display:flex;flex-direction:column;gap:0.8rem}
+.ihram-box li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:0.9rem;color:var(--cream-muted);line-height:1.7;
+}
+.ihram-box li::before{
+  content:'';
+  width:6px;height:6px;
+  background:var(--gold-400);
+  transform:rotate(45deg);
+  flex-shrink:0;margin-top:8px;
+  border-radius:1px;
+}
+
+/* Talbiyah box */
+.talbiyah-box{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,
+    rgba(27,94,59,0.25) 0%,
+    rgba(8,20,40,0.7) 50%,
+    rgba(27,94,59,0.15) 100%);
+  border:1.5px solid rgba(64,169,106,0.4);
+  border-radius:var(--r-lg);
+  padding:clamp(1.5rem,4vw,3rem);
+  text-align:center;
   position:relative;overflow:hidden;
 }
-.pillar-num{
-  position:absolute;top:-15px;right:20px;font-size:5rem;font-weight:900;
-  color:rgba(201,162,39,0.06);font-family:var(--font-en-h);line-height:1;
+.talbiyah-box::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(64,169,106,0.08) 0%,transparent 70%);
 }
-.ar .pillar-num{right:auto;left:20px}
-.pillar-title{font-size:1.1rem;color:var(--gold-light);font-weight:700;margin-bottom:0.4rem}
-.pillar-sub{font-size:0.85rem;color:var(--white-muted)}
+.talbiyah-label{
+  display:block;
+  font-size:0.72rem;color:var(--emerald-300);
+  letter-spacing:3px;margin-bottom:1.2rem;
+  text-transform:uppercase;
+  font-family:var(--font-en-display);
+}
+.talbiyah-ar{
+  font-family:var(--font-quran);
+  font-size:clamp(1.2rem,3vw,1.7rem);
+  color:var(--gold-200);
+  line-height:2.5;
+  margin-bottom:1rem;
+}
+.talbiyah-en{
+  font-family:var(--font-en-body);
+  font-style:italic;
+  color:var(--cream-muted);
+  font-size:0.93rem;
+  line-height:1.9;
+}
 
-/* ── IHRAM SECTION ── */
-.ihram-container{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-@media(max-width:768px){.ihram-container{grid-template-columns:1fr}}
-.ihram-box{background:var(--navy-card);border-radius:var(--r-lg);padding:2rem;border:1px solid var(--border-gold)}
-.ihram-box h3{color:var(--gold-light);font-family:var(--font-ar-h);font-size:1.4rem;margin-bottom:1rem}
-.en .ihram-box h3{font-family:var(--font-en-h);font-size:1rem}
-.ihram-box ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
-.ihram-box li{display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--white-muted)}
-.ihram-box li::before{content:'◆';color:var(--gold);font-size:0.5rem;margin-top:7px;flex-shrink:0}
-.talbiyah-box{
-  grid-column:1/-1;background:linear-gradient(135deg,rgba(27,94,59,0.3),rgba(11,31,51,0.5));
-  border:2px solid var(--emerald-light);border-radius:var(--r-lg);padding:2.5rem;text-align:center;
-}
-.talbiyah-ar{font-family:var(--font-ar-h);font-size:1.6rem;color:var(--gold-light);line-height:2.5;margin-bottom:1rem}
-.talbiyah-en{font-family:var(--font-en-b);font-style:italic;color:var(--white-muted);font-size:0.95rem;line-height:1.9}
-.talbiyah-label{font-size:0.75rem;color:var(--emerald-glow);letter-spacing:2px;margin-bottom:1rem;display:block}
-
-/* ── MIQAT MAP ── */
-.miqat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
-.miqat-card{
-  background:var(--navy-card);border:1px solid var(--border-gold);border-radius:var(--r);
-  padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all 0.3s;
-}
-.miqat-card:hover{background:var(--navy-hover);transform:translateY(-2px)}
-.miqat-icon{width:44px;height:44px;background:rgba(201,162,39,0.15);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.miqat-info h4{color:var(--gold-light);font-size:1rem;margin-bottom:4px}
-.miqat-info p{color:var(--white-muted);font-size:0.85rem}
-
-/* ── DAYS TIMELINE ── */
-.days-nav{
-  display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;
-}
-.day-btn{
-  padding:10px 20px;border-radius:30px;border:1px solid var(--border-gold);
-  background:transparent;color:var(--white-muted);cursor:pointer;
-  font-family:var(--font-ar-b);font-size:0.9rem;transition:all 0.3s;white-space:nowrap;
-}
-.day-btn:hover,.day-btn.active{
-  background:var(--gold-dark);color:var(--white);border-color:var(--gold);
-  box-shadow:0 0 15px rgba(201,162,39,0.3);
-}
-.day-btn.special{border-color:var(--emerald-light);color:var(--emerald-glow)}
-.day-btn.special:hover,.day-btn.special.active{background:var(--emerald);color:var(--white);border-color:var(--emerald-glow)}
-.day-content{display:none}
-.day-content.active{display:block}
-
-.day-header{
-  background:linear-gradient(135deg,var(--navy-card),var(--navy-mid));
-  border:1px solid var(--border-gold);border-radius:var(--r-lg) var(--r-lg) 0 0;
-  padding:2rem;display:flex;align-items:center;gap:1.5rem;
-}
-.day-header.green{border-color:var(--emerald-light);background:linear-gradient(135deg,rgba(27,94,59,0.4),var(--navy-mid))}
-.day-num{
-  width:70px;height:70px;background:rgba(201,162,39,0.15);border:2px solid var(--gold);
-  border-radius:50%;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;flex-shrink:0;
-}
-.day-num.green{background:rgba(27,94,59,0.3);border-color:var(--emerald-light)}
-.day-num span:first-child{font-size:1.4rem;font-weight:700;color:var(--gold-light);line-height:1}
-.day-num.green span:first-child{color:var(--emerald-glow)}
-.day-num span:last-child{font-size:0.6rem;color:var(--white-muted)}
-.day-title-group h2{font-family:var(--font-ar-h);font-size:1.8rem;color:var(--gold-light)}
-.en .day-title-group h2{font-family:var(--font-en-h);font-size:1.2rem}
-.day-title-group h2.green-text{color:var(--emerald-glow)}
-.day-title-group p{color:var(--white-muted);font-size:0.9rem;margin-top:4px}
-.day-alert{
-  background:rgba(201,162,39,0.1);border:1px solid var(--gold);border-radius:0;
-  padding:1rem 2rem;font-size:0.9rem;color:var(--gold-pale);text-align:center;
-}
-.day-alert.green{background:rgba(27,94,59,0.2);border-color:var(--emerald-light);color:#7FD9A8}
-
-.steps-container{
-  background:var(--navy-card);border:1px solid var(--border-gold);
-  border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg);padding:1rem 0;
-}
-.step-item{
-  padding:1.2rem 2rem;border-bottom:1px solid rgba(201,162,39,0.1);
-  display:flex;gap:1.5rem;align-items:flex-start;cursor:pointer;
-  transition:background 0.2s;
-}
-.step-item:last-child{border-bottom:none}
-.step-item:hover{background:rgba(255,255,255,0.03)}
-.step-num-badge{
-  width:36px;height:36px;background:rgba(201,162,39,0.15);border:1px solid var(--border-gold-bright);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;color:var(--gold);font-weight:700;flex-shrink:0;margin-top:3px;
-}
-.step-num-badge.green{background:rgba(27,94,59,0.3);border-color:var(--emerald-light);color:var(--emerald-glow)}
-.step-num-badge.red{background:rgba(180,30,30,0.2);border-color:rgba(220,60,60,0.5);color:#FF8888}
-.step-body{flex:1}
-.step-title{font-size:1.05rem;color:var(--white);font-weight:600;margin-bottom:4px}
-.step-title-en{font-family:var(--font-en-h);font-size:0.75rem;color:var(--gold);margin-bottom:6px;display:block;letter-spacing:1px}
-.ar .step-title-en{display:none}
-.en .step-title-ar{display:none}
-.step-desc{font-size:0.88rem;color:var(--white-muted);line-height:1.8}
-.step-tag{
-  display:inline-block;font-size:0.7rem;padding:3px 10px;border-radius:12px;margin-top:6px;
-}
-.tag-fard{background:rgba(220,60,60,0.2);color:#FF9999;border:1px solid rgba(220,60,60,0.4)}
-.tag-wajib{background:rgba(255,165,0,0.2);color:#FFD080;border:1px solid rgba(255,165,0,0.4)}
-.tag-sunnah{background:rgba(40,180,100,0.2);color:#80FFB0;border:1px solid rgba(40,180,100,0.4)}
-.step-expand{
-  max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;
-  background:rgba(0,0,0,0.2);border-radius:var(--r);margin-top:0;
-}
-.step-expand.open{max-height:600px;padding:1rem}
-.step-expand ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.step-expand li{display:flex;gap:8px;font-size:0.85rem;color:var(--white-muted)}
-.step-expand li::before{content:'•';color:var(--gold);flex-shrink:0}
-.step-expand .hadith{
-  background:rgba(201,162,39,0.08);border-right:3px solid var(--gold);
-  padding:0.8rem 1rem;border-radius:0 var(--r) var(--r) 0;
-  font-family:var(--font-ar-h);font-size:0.95rem;color:var(--gold-pale);
-  margin-top:0.8rem;line-height:2;
-}
-.ar .step-expand .hadith{border-right:3px solid var(--gold);border-left:none}
-.en .step-expand .hadith{border-left:3px solid var(--gold);border-right:none;font-family:var(--font-en-b);font-style:italic}
-
-/* ── PROHIBITIONS ── */
-.prohib-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+/* Prohibitions */
+.prohib-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 @media(max-width:600px){.prohib-grid{grid-template-columns:1fr}}
-.prohib-col{background:var(--navy-card);border-radius:var(--r-lg);padding:1.5rem}
-.prohib-col.both-col{border:1px solid rgba(255,165,0,0.4)}
-.prohib-col.men-col{border:1px solid rgba(100,150,255,0.4)}
-.prohib-col.women-col{border:1px solid rgba(255,150,200,0.4)}
-.prohib-col h3{margin-bottom:1rem;font-size:1rem;font-weight:700}
+.prohib-col{
+  background:rgba(6,15,30,0.5);
+  border-radius:var(--r);
+  padding:1.5rem;
+}
+.prohib-col.both-col{border:1px solid rgba(255,165,0,0.3)}
+.prohib-col.men-col{border:1px solid rgba(100,150,255,0.3)}
+.prohib-col.women-col{border:1px solid rgba(255,150,200,0.3)}
+.prohib-col h3{
+  margin-bottom:1rem;font-size:0.95rem;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+}
 .prohib-col.both-col h3{color:#FFD080}
 .prohib-col.men-col h3{color:#A0C0FF}
 .prohib-col.women-col h3{color:#FFB0D8}
-.prohib-col ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.prohib-col li{font-size:0.88rem;color:var(--white-muted);display:flex;gap:8px}
-.prohib-col li::before{content:'✗';flex-shrink:0}
+.prohib-col ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.prohib-col li{
+  font-size:0.86rem;color:var(--cream-muted);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.prohib-col li::before{content:'✕';flex-shrink:0;font-size:0.7rem;margin-top:3px}
 .both-col li::before{color:#FFD080}.men-col li::before{color:#A0C0FF}.women-col li::before{color:#FFB0D8}
 
-/* ── TAHALLUL SECTION ── */
-.tahallul-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+/* ══════════════════════════════════════════
+   DAYS TIMELINE
+══════════════════════════════════════════ */
+.days-nav{
+  display:flex;gap:0.6rem;
+  justify-content:center;flex-wrap:wrap;
+  margin-bottom:2.5rem;
+}
+.day-btn{
+  padding:10px 22px;border-radius:100px;
+  border:1px solid var(--gold-border);
+  background:rgba(17,36,68,0.4);
+  color:var(--cream-muted);
+  cursor:pointer;
+  font-family:var(--font-ar-body);
+  font-size:0.88rem;
+  transition:all 0.3s var(--ease);
+  white-space:nowrap;
+  backdrop-filter:blur(8px);
+}
+.day-btn:hover{
+  background:rgba(201,162,39,0.1);
+  border-color:var(--gold-400);
+  color:var(--gold-300);
+}
+.day-btn.active{
+  background:linear-gradient(135deg,var(--gold-600),var(--gold-500));
+  border-color:var(--gold-400);
+  color:var(--gold-100);
+  box-shadow:0 0 20px rgba(201,162,39,0.3);
+}
+.day-btn.special{border-color:rgba(64,169,106,0.4);color:var(--emerald-300)}
+.day-btn.special:hover{background:rgba(64,169,106,0.1);border-color:var(--emerald-300)}
+.day-btn.special.active{
+  background:linear-gradient(135deg,var(--emerald-900),var(--emerald-700));
+  border-color:var(--emerald-300);color:var(--cream);
+  box-shadow:0 0 20px var(--emerald-glow);
+}
+
+.day-content{display:none}
+.day-content.active{display:block;animation:fade-up 0.4s var(--ease) both}
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+.day-header{
+  background:linear-gradient(135deg,
+    rgba(17,36,68,0.9) 0%,
+    rgba(8,14,26,0.8) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  padding:2rem clamp(1.2rem,3vw,2rem);
+  display:flex;align-items:center;gap:1.5rem;
+  flex-wrap:wrap;
+}
+.day-header.green{
+  border-color:rgba(64,169,106,0.4);
+  background:linear-gradient(135deg,
+    rgba(27,94,59,0.3) 0%,
+    rgba(8,14,26,0.8) 100%);
+}
+
+.day-num{
+  width:72px;height:72px;flex-shrink:0;
+  background:var(--gold-dim);
+  border:2px solid var(--gold-400);
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  box-shadow:0 0 20px rgba(201,162,39,0.2);
+}
+.day-num.green{
+  background:rgba(27,94,59,0.3);
+  border-color:var(--emerald-300);
+  box-shadow:0 0 20px var(--emerald-glow);
+}
+.day-num .dn-num{
+  font-size:1.5rem;font-weight:700;
+  color:var(--gold-300);line-height:1;
+}
+.day-num.green .dn-num{color:var(--emerald-300)}
+.day-num .dn-label{font-size:0.58rem;color:var(--cream-muted)}
+
+.day-title-group h2{
+  font-family:var(--font-ar-display);
+  font-size:clamp(1.4rem,3vw,1.9rem);
+  color:var(--gold-200);
+}
+.en .day-title-group h2{font-family:var(--font-en-display);font-size:clamp(1rem,2vw,1.3rem)}
+.day-title-group h2.green-text{color:var(--emerald-300)}
+.day-title-group p{color:var(--cream-muted);font-size:0.88rem;margin-top:5px}
+
+.day-alert{
+  background:rgba(201,162,39,0.08);
+  border-top:none;
+  border:1px solid var(--gold-border);
+  border-radius:0;
+  padding:1rem 2rem;
+  font-size:0.88rem;
+  color:var(--gold-200);
+  text-align:center;
+  border-left:none;border-right:none;
+}
+.day-alert.green{
+  background:rgba(27,94,59,0.15);
+  border-color:rgba(64,169,106,0.3);
+  color:var(--emerald-100);
+}
+
+.steps-container{
+  background:linear-gradient(180deg,
+    rgba(17,36,68,0.6) 0%,
+    rgba(6,15,30,0.8) 100%);
+  border:1px solid var(--gold-border);
+  border-top:none;
+  border-radius:0 0 var(--r-lg) var(--r-lg);
+  overflow:hidden;
+}
+
+.step-item{
+  padding:1.4rem clamp(1.2rem,3vw,2rem);
+  border-bottom:1px solid rgba(201,162,39,0.08);
+  display:flex;gap:1.5rem;align-items:flex-start;
+  cursor:pointer;
+  transition:background 0.25s var(--ease);
+}
+.step-item:last-child{border-bottom:none}
+.step-item:hover{background:rgba(255,255,255,0.025)}
+
+.step-badge{
+  width:38px;height:38px;flex-shrink:0;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;font-weight:700;
+  margin-top:2px;
+  border:1px solid;
+  transition:all 0.3s;
+}
+.step-badge-gold{
+  background:rgba(201,162,39,0.15);
+  border-color:var(--gold-border);
+  color:var(--gold-400);
+}
+.step-badge-green{
+  background:rgba(27,94,59,0.25);
+  border-color:rgba(64,169,106,0.4);
+  color:var(--emerald-300);
+}
+.step-badge-red{
+  background:rgba(180,30,30,0.2);
+  border-color:rgba(220,60,60,0.4);
+  color:var(--red-300);
+}
+.step-item:hover .step-badge{transform:scale(1.1)}
+
+.step-body{flex:1;min-width:0}
+.step-title-en{
+  font-family:var(--font-en-display);
+  font-size:0.68rem;color:var(--gold-400);
+  margin-bottom:5px;display:block;
+  letter-spacing:1.5px;
+}
+.ar .step-title-en{display:none}
+.en .step-title-ar{display:none}
+.step-title{
+  font-size:1.02rem;color:var(--cream);
+  font-weight:600;margin-bottom:5px;line-height:1.4;
+}
+.step-desc{font-size:0.86rem;color:var(--cream-muted);line-height:1.8}
+
+.step-tag{
+  display:inline-flex;align-items:center;
+  font-size:0.68rem;padding:3px 12px;
+  border-radius:100px;margin-top:8px;
+  font-weight:700;letter-spacing:0.5px;
+  border:1px solid;
+}
+.tag-fard{background:rgba(220,60,60,0.15);color:#FF9999;border-color:rgba(220,60,60,0.35)}
+.tag-wajib{background:rgba(255,165,0,0.15);color:#FFD080;border-color:rgba(255,165,0,0.35)}
+.tag-sunnah{background:rgba(40,180,100,0.15);color:#80FFB0;border-color:rgba(40,180,100,0.35)}
+
+.step-expand{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.step-expand.open{max-height:600px}
+.step-expand-inner{
+  background:rgba(0,0,0,0.2);
+  border-radius:var(--r-sm);
+  margin-top:10px;
+  padding:1rem 1.2rem;
+}
+.step-expand ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.step-expand li{
+  display:flex;gap:10px;
+  font-size:0.84rem;color:var(--cream-muted);
+}
+.step-expand li::before{content:'◆';color:var(--gold-500);font-size:0.5rem;flex-shrink:0;margin-top:6px}
+.step-expand .hadith{
+  background:rgba(201,162,39,0.07);
+  border-right:3px solid var(--gold-400);
+  padding:0.8rem 1rem;border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-family:var(--font-ar-display);
+  font-size:0.92rem;color:var(--gold-200);
+  margin-top:0.8rem;line-height:2;
+}
+.ar .step-expand .hadith{border-right:3px solid var(--gold-400);border-left:none}
+.en .step-expand .hadith{
+  border-left:3px solid var(--gold-400);
+  border-right:none;
+  font-family:var(--font-en-body);
+  font-style:italic;
+}
+
+/* ══════════════════════════════════════════
+   TIPS GRID
+══════════════════════════════════════════ */
+.tips-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+.tip-card{
+  background:linear-gradient(145deg,
+    rgba(17,36,68,0.7) 0%,
+    rgba(6,15,30,0.8) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg);
+  padding:1.8rem;
+  transition:all 0.4s var(--ease);
+  position:relative;overflow:hidden;
+  backdrop-filter:blur(6px);
+}
+.tip-card::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+  transform:scaleX(0);transition:transform 0.4s;
+}
+.tip-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(201,162,39,0.5);
+  box-shadow:var(--shadow-gold);
+}
+.tip-card:hover::before{transform:scaleX(1)}
+.tip-card h4{
+  color:var(--gold-300);font-size:1rem;
+  margin-bottom:0.7rem;
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;
+}
+.tip-icon{
+  width:36px;height:36px;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+  transition:all 0.3s;
+}
+.tip-card:hover .tip-icon{
+  box-shadow:0 0 12px var(--gold-glow);
+  border-color:var(--gold-400);
+}
+.tip-card p{font-size:0.87rem;color:var(--cream-muted);line-height:1.8}
+
+/* ══════════════════════════════════════════
+   MADINAH GRID
+══════════════════════════════════════════ */
+.madinah-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.2rem;
+}
+.madinah-card{
+  background:linear-gradient(145deg,
+    rgba(27,94,59,0.15) 0%,
+    rgba(17,36,68,0.7) 100%);
+  border:1px solid rgba(64,169,106,0.3);
+  border-radius:var(--r);
+  padding:1.8rem;text-align:center;
+  transition:all 0.4s var(--ease);
+  backdrop-filter:blur(6px);
+}
+.madinah-card:hover{
+  transform:translateY(-5px);
+  background:linear-gradient(145deg,
+    rgba(27,94,59,0.3) 0%,
+    rgba(17,36,68,0.7) 100%);
+  border-color:var(--emerald-300);
+  box-shadow:0 8px 30px var(--emerald-glow);
+}
+.madinah-icon{
+  width:60px;height:60px;margin:0 auto 1rem;
+  background:rgba(27,94,59,0.3);
+  border:1px solid rgba(64,169,106,0.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  transition:all 0.4s var(--ease-bounce);
+}
+.madinah-card:hover .madinah-icon{
+  transform:scale(1.15);
+  box-shadow:0 0 20px var(--emerald-glow);
+}
+.madinah-card h4{
+  color:var(--emerald-300);font-size:1rem;
+  margin-bottom:0.5rem;font-weight:700;
+}
+.madinah-card p{color:var(--cream-muted);font-size:0.84rem;line-height:1.7}
+
+/* ══════════════════════════════════════════
+   TAHALLUL SECTION
+══════════════════════════════════════════ */
+.tahallul-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin-top:1.5rem;
+}
 @media(max-width:600px){.tahallul-grid{grid-template-columns:1fr}}
 .tahallul-card{
-  background:var(--navy-card);border-radius:var(--r-lg);padding:1.5rem;
-  border:1px solid var(--border-gold);text-align:center;
-}
-.tahallul-card h3{color:var(--gold-light);font-size:1.1rem;margin-bottom:0.5rem}
-.tahallul-card p{color:var(--white-muted);font-size:0.85rem}
-.tahallul-card .check-list{text-align:right;margin-top:1rem;list-style:none;display:flex;flex-direction:column;gap:4px}
-.ar .tahallul-card .check-list{text-align:right}
-.en .tahallul-card .check-list{text-align:left}
-.tahallul-card .check-list li{font-size:0.85rem;color:var(--white-muted);display:flex;gap:8px;align-items:center}
-.tahallul-card .check-list li::before{content:'✓';color:var(--emerald-glow);flex-shrink:0}
-
-/* ── TIPS ── */
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
-.tip-card{
-  background:var(--navy-card);border:1px solid var(--border-gold);border-radius:var(--r-lg);
-  padding:1.5rem;transition:all 0.3s;
-}
-.tip-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-gold)}
-.tip-card h4{color:var(--gold-light);font-size:1rem;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
-.tip-card h4 span{font-size:1.4rem}
-.tip-card p{font-size:0.88rem;color:var(--white-muted);line-height:1.7}
-
-/* ── MADINAH ── */
-.madinah-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
-.madinah-card{
-  background:linear-gradient(135deg,rgba(27,94,59,0.2),var(--navy-card));
-  border:1px solid var(--emerald-light);border-radius:var(--r);padding:1.5rem;
+  background:rgba(17,36,68,0.7);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg);padding:2rem;
   text-align:center;transition:all 0.3s;
 }
-.madinah-card:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(27,94,59,0.35),var(--navy-card))}
-.madinah-card .icon{font-size:2rem;margin-bottom:0.8rem;display:block}
-.madinah-card h4{color:var(--emerald-glow);font-size:1rem;margin-bottom:0.4rem}
-.madinah-card p{color:var(--white-muted);font-size:0.82rem;line-height:1.6}
-
-/* ── FOOTER ── */
-footer{
-  background:var(--navy-mid);border-top:1px solid var(--border-gold);
-  text-align:center;padding:3rem 2rem;
+.tahallul-card:hover{transform:translateY(-3px);border-color:var(--gold-400)}
+.tahallul-card h3{color:var(--gold-300);font-size:1.1rem;margin-bottom:0.5rem}
+.tahallul-card p{color:var(--cream-muted);font-size:0.85rem}
+.tahallul-card .check-list{
+  text-align:right;margin-top:1rem;
+  list-style:none;display:flex;flex-direction:column;gap:5px;
 }
-footer .footer-logo{font-family:var(--font-ar-h);font-size:1.5rem;color:var(--gold-light);margin-bottom:0.5rem}
-footer p{color:var(--text-dim);font-size:0.85rem}
-.en footer .footer-logo{font-family:var(--font-en-h);font-size:1rem}
-.footer-ayah{
-  max-width:700px;margin:1.5rem auto;
-  background:rgba(201,162,39,0.07);border:1px solid var(--border-gold);
-  border-radius:var(--r);padding:1.5rem;
+.en .tahallul-card .check-list{text-align:left}
+.tahallul-card .check-list li{
+  font-size:0.84rem;color:var(--cream-muted);
+  display:flex;gap:8px;align-items:flex-start;
 }
-.footer-ayah .ayah-ar{font-family:var(--font-ar-h);font-size:1.3rem;color:var(--gold-pale);line-height:2.5;margin-bottom:0.5rem}
-.footer-ayah .ayah-ref{font-size:0.8rem;color:var(--text-dim)}
+.tahallul-card .check-list li::before{content:'✓';color:var(--emerald-300);flex-shrink:0;margin-top:2px}
 
-/* ── DIVIDER ── */
+/* ══════════════════════════════════════════
+   GOLD DIVIDER
+══════════════════════════════════════════ */
 .gold-divider{
-  display:flex;align-items:center;gap:1rem;margin:1.5rem 0;
+  display:flex;align-items:center;gap:12px;margin:1.8rem 0;
 }
-.gold-divider::before,.gold-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.gold-divider span{color:var(--gold);font-size:1.2rem}
+.gold-divider::before,.gold-divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-border));
+}
+.gold-divider::after{
+  background:linear-gradient(270deg,transparent,var(--gold-border));
+}
+.gold-divider span{color:var(--gold-400);font-size:1rem}
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .day-header{flex-direction:column;text-align:center}
-  .ihram-container{grid-template-columns:1fr}
+/* ══════════════════════════════════════════
+   IHRAM PROHIBITIONS EXPANDED
+══════════════════════════════════════════ */
+.prohib-section{
+  border:1px solid rgba(220,60,60,0.3);
+  border-radius:var(--r-lg);
+  padding:2rem;
+  background:rgba(40,10,10,0.2);
+  grid-column:1/-1;
+}
+.prohib-section h3{color:var(--red-300);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:8px}
+
+/* ══════════════════════════════════════════
+   FAREWELL TAWAF BOX
+══════════════════════════════════════════ */
+.farewell-box{
+  max-width:840px;margin:0 auto;
+  background:linear-gradient(145deg,
+    rgba(17,36,68,0.85) 0%,
+    rgba(6,15,30,0.7) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-xl);
+  padding:clamp(1.5rem,4vw,3rem);
+  position:relative;overflow:hidden;
+  backdrop-filter:blur(10px);
+}
+.farewell-box::before{
+  content:'';position:absolute;
+  top:0;left:50%;transform:translateX(-50%);
+  width:40%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
 }
 
-/* ── ARABIC SPECIFIC ── */
-.ar-only{display:block}.en-only{display:none}
-.en .ar-only{display:none}.en .en-only{display:block}
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer{
+  position:relative;
+  background:linear-gradient(180deg,
+    rgba(3,8,15,0) 0%,
+    rgba(3,8,15,0.98) 20%);
+  border-top:1px solid var(--gold-border);
+  text-align:center;
+  padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,3rem);
+}
+footer::before{
+  content:'';position:absolute;
+  top:0;left:50%;transform:translateX(-50%);
+  width:min(600px,90%);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+}
+.footer-logo{
+  font-family:var(--font-ar-display);
+  font-size:1.8rem;
+  color:var(--gold-300);
+  margin-bottom:0.5rem;
+  text-shadow:0 0 40px rgba(201,162,39,0.3);
+}
+.en .footer-logo{font-family:var(--font-en-display);font-size:1.2rem}
+.footer-ayah-card{
+  max-width:720px;margin:2rem auto;
+  background:linear-gradient(135deg,
+    rgba(201,162,39,0.07) 0%,
+    rgba(27,94,59,0.05) 100%);
+  border:1px solid var(--gold-border);
+  border-radius:var(--r-lg);
+  padding:2rem;
+}
+.footer-ayah-card .ayah-arabic{font-size:1.4rem;margin-bottom:0.5rem}
+.footer-ayah-card .ayah-ref{font-size:0.78rem;color:var(--cream-dim)}
+footer p{color:var(--cream-dim);font-size:0.84rem;line-height:1.9}
+.footer-dua{
+  color:var(--gold-400) !important;
+  font-family:var(--font-ar-display);
+  font-size:1rem !important;
+  margin-top:1.5rem !important;
+}
+.en .footer-dua{font-family:var(--font-en-body);font-style:italic}
 
-/* ── ANIMATIONS ── */
-.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.6s,transform 0.6s}
+/* ══════════════════════════════════════════
+   ANIMATIONS & INTERACTIONS
+══════════════════════════════════════════ */
+.fade-in{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity 0.7s var(--ease),transform 0.7s var(--ease);
+}
 .fade-in.visible{opacity:1;transform:none}
 
-/* ── KAABA SVG ── */
-.kaaba-wrap{position:relative;display:inline-block}
+/* Stagger children */
+.fade-in:nth-child(2){transition-delay:0.1s}
+.fade-in:nth-child(3){transition-delay:0.2s}
+.fade-in:nth-child(4){transition-delay:0.3s}
+
+/* Kaaba float */
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  33%{transform:translateY(-8px) rotate(-0.5deg)}
+  66%{transform:translateY(-4px) rotate(0.5deg)}
+}
+
+/* ══════════════════════════════════════════
+   ARABIC/ENGLISH LANGUAGE SWITCH
+══════════════════════════════════════════ */
+.ar-only{display:block}.en-only{display:none}
+.en .ar-only{display:none}.en .en-only{display:block}
+.en .ar-only.inline{display:none}.en .en-only.inline{display:inline}
+.ar-only.inline{display:inline}.en-only.inline{display:none}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE DESIGN
+══════════════════════════════════════════ */
+@media(max-width:900px){
+  .day-header{flex-direction:column;text-align:center;gap:1rem}
+}
+@media(max-width:768px){
+  .ihram-container{grid-template-columns:1fr}
+  .tahallul-grid{grid-template-columns:1fr}
+  .prohib-grid{grid-template-columns:1fr}
+  .step-item{gap:1rem}
+  .hero-stats{gap:0.7rem}
+  .stat-card{min-width:80px;padding:0.8rem 1rem}
+  .stat-num{font-size:1.5rem}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:3rem}
+  .days-nav{gap:0.4rem}
+  .day-btn{padding:8px 14px;font-size:0.82rem}
+  .step-item{padding:1rem}
+  .stat-card{padding:0.7rem 0.8rem}
+  section{padding:50px 1rem}
+}
+
+/* ══════════════════════════════════════════
+   PULSE RING for special elements
+══════════════════════════════════════════ */
+@keyframes pulse-ring{
+  0%{box-shadow:0 0 0 0 rgba(201,162,39,0.4)}
+  70%{box-shadow:0 0 0 15px rgba(201,162,39,0)}
+  100%{box-shadow:0 0 0 0 rgba(201,162,39,0)}
+}
+.pulse{animation:pulse-ring 3s ease-out infinite}
+
+/* ══════════════════════════════════════════
+   QURAN VERSE ACCENT LINES
+══════════════════════════════════════════ */
+.verse-accent{
+  position:relative;padding:2rem;text-align:center;
+  margin:2rem 0;
+}
+.verse-accent::before,.verse-accent::after{
+  content:'';
+  position:absolute;width:60px;height:60px;
+  border-color:var(--gold-500);border-style:solid;
+  opacity:0.5;
+}
+.verse-accent::before{top:0;right:0;border-width:2px 2px 0 0;border-radius:0 var(--r-sm) 0 0}
+.ar .verse-accent::before{right:auto;left:0;border-width:2px 0 0 2px;border-radius:var(--r-sm) 0 0 0}
+.verse-accent::after{bottom:0;left:0;border-width:0 0 2px 2px;border-radius:0 0 0 var(--r-sm)}
+.ar .verse-accent::after{left:auto;right:0;border-width:0 2px 2px 0;border-radius:0 0 var(--r-sm) 0}
 </style>
-
 </head>
-
 
 <body id="body-root">
 
-  <div id="scroll-bar" class="scroll-progress" style="width:0%"></div>
+<!-- ── SCROLL BAR ── -->
+<div id="scroll-bar" class="scroll-progress" style="width:0%"></div>
 
-<header>
+<!-- ── CINEMATIC BACKGROUND ── -->
+<div class="bg-canvas" aria-hidden="true">
+  <div class="bg-stars"></div>
+  <div class="bg-geo"></div>
+  <div class="bg-sand"></div>
+  <div class="bg-horizon"></div>
+</div>
 
+
+
+<header id="main-header">
   <div class="header-inner">
     <div class="logo">
-      <svg class="logo-star" viewBox="0 0 40 40" fill="none">
-        <polygon points="20,2 24,14 37,14 27,21 31,34 20,27 9,34 13,21 3,14 16,14" fill="rgba(201,162,39,0.2)" stroke="#C9A227" stroke-width="1"/>
-        <circle cx="20" cy="20" r="5" fill="#C9A227" opacity="0.8"/>
-      </svg>
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 9L12 12.5L20 9L12 5.5L4 9Z" fill="#C9A227" fill-opacity="0.8"/>
+          <path d="M4 9V17L12 20.5V12.5L4 9Z" fill="#C9A227" fill-opacity="0.5"/>
+          <path d="M12 12.5V20.5L20 17V9L12 12.5Z" fill="#C9A227" fill-opacity="0.3"/>
+          <path d="M4 11.5L12 15L20 11.5" stroke="#C9A227" stroke-width="1" stroke-linecap="round"/>
+          <path d="M12 5.5V12.5" stroke="#C9A227" stroke-width="0.5" stroke-dasharray="1 1"/>
+        </svg>
+      </div>
       <span class="logo-text">
-        <span class="ar-only">مناسك الحج </span>
-        <span class="en-only"> Hajj Manasik</span>
+        <span class="ar-only">مناسك الحج</span>
+        <span class="en-only">Hajj Manasik</span>
       </span>
     </div>
-    <div class="header-actions">
-      <button class="lang-btn" onclick="toggleLang()" id="lang-toggle">
-        🌐 <span id="lang-label">English</span>
+    <nav class="header-nav">
+      <button class="lang-btn" onclick="toggleLang()" id="lang-toggle" aria-label="Toggle language">
+        <div class="lang-globe" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </div>
+        <span id="lang-label">English</span>
       </button>
-    </div>
+    </nav>
   </div>
 </header>
 
-
+<!-- ══════════════════════════════════════════ -->
 <div class="content-wrap">
+
 <!-- ══════════════════ HERO ══════════════════ -->
-
 <div class="hero">
-  <div class="kaaba-wrap hero-kaaba">
-  <div class="hero-badge">
 
-  <div class="footer-ayah">
-    <div class="ayah-ar">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</div>
-    <div class="talbiyah-en">"Complete the Hajj and Umrah for Allah." — Quran 2:196</div>
+  <!-- Mecca silhouette -->
+  <div class="bg-mecca-silhouette" aria-hidden="true"></div>
+
+  <!-- Ayah card -->
+  <div class="hero-ayah-card fade-in">
+    <div class="ayah-arabic">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</div>
+    <div class="ayah-translation">"Complete the Hajj and Umrah for Allah." — Quran 2:196</div>
     <div class="ayah-ref">[البقرة: ١٩٦] · Al-Baqarah: 196</div>
   </div>
 
-  <h1>
-    <span class="ar-only">مناسك الحج </span>
-    <span class="en-only"> Hajj Manasik</span>
-  </h1>
-   <div class="hero-stats">
-    <div class="stat-box">
+  <!-- Title -->
+  <div class="hero-title-wrap fade-in">
+    <h1 class="hero-h1">
+      <span class="ar-only">مناسك الحج</span>
+      <span class="en-only">Hajj Manasik</span>
+    </h1>
+    <div class="hero-subtitle">
+      <span class="ar-only">دليلك الشامل لأداء الحج</span>
+      <span class="en-only">THE COMPLETE PILGRIM'S GUIDE</span>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="hero-stats fade-in">
+    <div class="stat-card">
       <div class="stat-num">٥</div>
       <div class="stat-label"><span class="ar-only">أيام المناسك</span><span class="en-only">Ritual Days</span></div>
     </div>
-    <div class="stat-box">
+    <div class="stat-card">
       <div class="stat-num">١٢</div>
       <div class="stat-label"><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></div>
     </div>
-    <div class="stat-box">
+    <div class="stat-card">
       <div class="stat-num">٤</div>
       <div class="stat-label"><span class="ar-only">مواقع مقدسة</span><span class="en-only">Holy Sites</span></div>
     </div>
-    <div class="stat-box">
+    <div class="stat-card">
       <div class="stat-num">٢M+</div>
       <div class="stat-label"><span class="ar-only">حاج سنوياً</span><span class="en-only">Pilgrims/Year</span></div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <span><span class="ar-only">ابدأ الرحلة</span><span class="en-only">Begin the Journey</span></span>
-    <div class="scroll-arrow"></div>
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll fade-in">
+    <span><span class="ar-only">ابدأ الرحلة</span><span class="en-only">BEGIN THE JOURNEY</span></span>
+    <div class="scroll-chevron"></div>
   </div>
 </div>
 
@@ -436,7 +1390,7 @@ footer p{color:var(--text-dim);font-size:0.85rem}
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">نظرة عامة</span><span class="en-only">OVERVIEW</span></div>
     <h2 class="section-title"><span class="ar-only">ما هو الحج؟</span><span class="en-only">What is Hajj?</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
     <p class="section-sub">
       <span class="ar-only">الحج هو الركن الخامس من أركان الإسلام، فريضة على كل مسلم مستطيع مرة واحدة في العمر، يؤدى في مكة المكرمة في الأيام المحددة من شهر ذي الحجة</span>
       <span class="en-only">Hajj is the fifth pillar of Islam — an obligation upon every able Muslim once in a lifetime, performed in Mecca during the designated days of Dhul Hijjah.</span>
@@ -444,92 +1398,98 @@ footer p{color:var(--text-dim);font-size:0.85rem}
   </div>
   <div class="overview-grid">
     <div class="ov-card fade-in">
-      <span class="ov-icon">📅</span>
+      <div class="ov-icon-wrap">📅</div>
       <div class="ov-title"><span class="ar-only">موعد الحج</span><span class="en-only">Hajj Timing</span></div>
       <div class="ov-text"><span class="ar-only">من ٨ إلى ١٣ ذي الحجة كل عام (أيام التشريق ٣ أيام). ذروته يوم عرفة التاسع من ذي الحجة</span><span class="en-only">8th to 13th Dhul Hijjah annually. The pinnacle is the Day of Arafah (9th Dhul Hijjah)</span></div>
     </div>
     <div class="ov-card fade-in">
-      <span class="ov-icon">🕌</span>
+      <div class="ov-icon-wrap">🕌</div>
       <div class="ov-title"><span class="ar-only">مكان الحج</span><span class="en-only">Location</span></div>
       <div class="ov-text"><span class="ar-only">مكة المكرمة · منى · عرفات · مزدلفة — المملكة العربية السعودية</span><span class="en-only">Mecca · Mina · Arafah · Muzdalifah — Kingdom of Saudi Arabia</span></div>
     </div>
     <div class="ov-card fade-in">
-      <span class="ov-icon">🧑‍🤝‍🧑</span>
+      <div class="ov-icon-wrap">🧑‍🤝‍🧑</div>
       <div class="ov-title"><span class="ar-only">على من يجب؟</span><span class="en-only">Who Must Perform It?</span></div>
       <div class="ov-text"><span class="ar-only">كل مسلم بالغ عاقل قادر جسدياً ومالياً، لكل منطقة حصة سنوية محددة</span><span class="en-only">Every sane, adult Muslim who is physically and financially able, with each country having an annual quota</span></div>
     </div>
     <div class="ov-card fade-in">
-      <span class="ov-icon">✨</span>
+      <div class="ov-icon-wrap">✨</div>
       <div class="ov-title"><span class="ar-only">فضل الحج</span><span class="en-only">Virtues of Hajj</span></div>
       <div class="ov-text"><span class="ar-only">«الحج المبرور ليس له جزاء إلا الجنة» — الحاج المقبول يرجع كيوم ولدته أمه من الذنوب</span><span class="en-only">"An accepted Hajj has no reward except Paradise." — The pilgrim returns pure of sins like the day they were born</span></div>
     </div>
   </div>
 </section>
 
+<div class="section-sep"></div>
+
 <!-- ══════════════════ PILLARS & OBLIGATIONS ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">أركان وواجبات</span><span class="en-only">PILLARS & OBLIGATIONS</span></div>
     <h2 class="section-title"><span class="ar-only">أركان الحج</span><span class="en-only">Pillars of Hajj</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
     <p class="section-sub"><span class="ar-only">الأركان: واجبة لصحة الحج ولا تجبر بدم. الواجبات: تجبر بدم إن تُركت</span><span class="en-only">Pillars (Arkan): obligatory for Hajj validity — cannot be compensated. Obligations (Wajibat): can be compensated by slaughtering an animal if missed.</span></p>
   </div>
   <div class="pillars-grid">
     <div class="pillar-card fade-in">
       <div class="pillar-num">1</div>
-      <div class="step-tag tag-fard" style="margin-bottom:8px"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></div>
+      <div class="pillar-badge badge-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></div>
       <div class="pillar-title"><span class="ar-only">الإحرام</span><span class="en-only">Ihram</span></div>
       <div class="pillar-sub"><span class="ar-only">النية لدخول الحج من الميقات</span><span class="en-only">Intention to enter Hajj from the Miqat</span></div>
     </div>
     <div class="pillar-card fade-in">
       <div class="pillar-num">2</div>
-      <div class="step-tag tag-fard" style="margin-bottom:8px"><span class="ar-only">ركن أعظم</span><span class="en-only">Greatest Pillar</span></div>
+      <div class="pillar-badge badge-fard"><span class="ar-only">ركن أعظم</span><span class="en-only">Greatest Pillar</span></div>
       <div class="pillar-title"><span class="ar-only">الوقوف بعرفة</span><span class="en-only">Wuquf at Arafah</span></div>
       <div class="pillar-sub"><span class="ar-only">«الحج عرفة» — الوقوف من ظهر التاسع إلى فجر العاشر</span><span class="en-only">"Hajj is Arafah" — Standing from Dhuhr of 9th until Fajr of 10th</span></div>
     </div>
     <div class="pillar-card fade-in">
       <div class="pillar-num">3</div>
-      <div class="step-tag tag-fard" style="margin-bottom:8px"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></div>
+      <div class="pillar-badge badge-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></div>
       <div class="pillar-title"><span class="ar-only">طواف الإفاضة</span><span class="en-only">Tawaf al-Ifadah</span></div>
       <div class="pillar-sub"><span class="ar-only">الطواف الرئيسي حول الكعبة يوم العيد أو بعده</span><span class="en-only">Main circumambulation of the Ka'aba on Eid day or after</span></div>
     </div>
     <div class="pillar-card fade-in">
       <div class="pillar-num">4</div>
-      <div class="step-tag tag-fard" style="margin-bottom:8px"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></div>
+      <div class="pillar-badge badge-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></div>
       <div class="pillar-title"><span class="ar-only">السعي بين الصفا والمروة</span><span class="en-only">Sa'i — Safa & Marwa</span></div>
       <div class="pillar-sub"><span class="ar-only">سبعة أشواط تذكاراً لهاجر عليها السلام</span><span class="en-only">Seven rounds in remembrance of Hajar (AS)</span></div>
     </div>
   </div>
 </section>
 
+<div class="section-sep"></div>
+
 <!-- ══════════════════ MIQAT ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">المواقيت المكانية</span><span class="en-only">MIQAT STATIONS</span></div>
     <h2 class="section-title"><span class="ar-only">مواقيت الإحرام</span><span class="en-only">Ihram Entry Points</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
     <p class="section-sub"><span class="ar-only">حدود مكانية محددة شرعاً لا يجوز لمن يريد الحج أو العمرة تجاوزها دون إحرام</span><span class="en-only">Fixed sacred boundaries beyond which no pilgrim may pass without entering the state of Ihram</span></p>
   </div>
   <div class="miqat-grid">
-    <div class="miqat-card"><div class="miqat-icon">🇸🇦</div><div class="miqat-info"><h4><span class="ar-only">ذو الحليفة (أبيار علي)</span><span class="en-only">Dhul Hulayfah (Abyar Ali)</span></h4><p><span class="ar-only">لأهل المدينة المنورة ومن يمر بها — على بُعد ٩ كم من المدينة</span><span class="en-only">For people of Madinah & those passing through — 9 km from Madinah</span></p></div></div>
-    <div class="miqat-card"><div class="miqat-icon">🇸🇾</div><div class="miqat-info"><h4><span class="ar-only">الجُحفة</span><span class="en-only">Al-Juhfah</span></h4><p><span class="ar-only">لأهل الشام ومصر والمغرب العربي ومن يمر بها</span><span class="en-only">For people of Syria, Egypt, North Africa & those passing through</span></p></div></div>
-    <div class="miqat-card"><div class="miqat-icon">🇮🇶</div><div class="miqat-info"><h4><span class="ar-only">ذات عِرق</span><span class="en-only">Dhat Irq</span></h4><p><span class="ar-only">لأهل العراق وإيران ومن يمر بها من الشرق</span><span class="en-only">For people of Iraq, Iran & those coming from the East</span></p></div></div>
-    <div class="miqat-card"><div class="miqat-icon">🇾🇪</div><div class="miqat-info"><h4><span class="ar-only">يَلَملَم</span><span class="en-only">Yalamlam</span></h4><p><span class="ar-only">لأهل اليمن وجنوب آسيا والقادمين من الجنوب</span><span class="en-only">For people of Yemen, South Asia & those coming from the South</span></p></div></div>
-    <div class="miqat-card"><div class="miqat-icon">🇸🇦</div><div class="miqat-info"><h4><span class="ar-only">قَرن المنازل (السيل)</span><span class="en-only">Qarn al-Manazil (Al-Sayl)</span></h4><p><span class="ar-only">لأهل نجد والخليج العربي ومن يمر بها</span><span class="en-only">For people of Najd, Gulf States & those passing through</span></p></div></div>
-    <div class="miqat-card"><div class="miqat-icon">✈️</div><div class="miqat-info"><h4><span class="ar-only">القادمون جواً</span><span class="en-only">For Air Travelers</span></h4><p><span class="ar-only">يُحرمون عند محاذاة أول ميقات يمرون فوقه أو في المطار قبل الرحلة</span><span class="en-only">Ihram when the plane crosses their relevant Miqat, or at the airport before the flight</span></p></div></div>
+    <div class="miqat-card fade-in"><div class="miqat-icon">🇸🇦</div><div class="miqat-info"><h4><span class="ar-only">ذو الحليفة (أبيار علي)</span><span class="en-only">Dhul Hulayfah (Abyar Ali)</span></h4><p><span class="ar-only">لأهل المدينة المنورة ومن يمر بها — على بُعد ٩ كم من المدينة</span><span class="en-only">For people of Madinah & those passing through — 9 km from Madinah</span></p></div></div>
+    <div class="miqat-card fade-in"><div class="miqat-icon">🇸🇾</div><div class="miqat-info"><h4><span class="ar-only">الجُحفة</span><span class="en-only">Al-Juhfah</span></h4><p><span class="ar-only">لأهل الشام ومصر والمغرب العربي ومن يمر بها</span><span class="en-only">For people of Syria, Egypt, North Africa & those passing through</span></p></div></div>
+    <div class="miqat-card fade-in"><div class="miqat-icon">🇮🇶</div><div class="miqat-info"><h4><span class="ar-only">ذات عِرق</span><span class="en-only">Dhat Irq</span></h4><p><span class="ar-only">لأهل العراق وإيران ومن يمر بها من الشرق</span><span class="en-only">For people of Iraq, Iran & those coming from the East</span></p></div></div>
+    <div class="miqat-card fade-in"><div class="miqat-icon">🇾🇪</div><div class="miqat-info"><h4><span class="ar-only">يَلَملَم</span><span class="en-only">Yalamlam</span></h4><p><span class="ar-only">لأهل اليمن وجنوب آسيا والقادمين من الجنوب</span><span class="en-only">For people of Yemen, South Asia & those coming from the South</span></p></div></div>
+    <div class="miqat-card fade-in"><div class="miqat-icon">🕋</div><div class="miqat-info"><h4><span class="ar-only">قَرن المنازل (السيل)</span><span class="en-only">Qarn al-Manazil (Al-Sayl)</span></h4><p><span class="ar-only">لأهل نجد والخليج العربي ومن يمر بها</span><span class="en-only">For people of Najd, Gulf States & those passing through</span></p></div></div>
+    <div class="miqat-card fade-in"><div class="miqat-icon">✈️</div><div class="miqat-info"><h4><span class="ar-only">القادمون جواً</span><span class="en-only">For Air Travelers</span></h4><p><span class="ar-only">يُحرمون عند محاذاة أول ميقات يمرون فوقه أو في المطار قبل الرحلة</span><span class="en-only">Ihram when the plane crosses their relevant Miqat, or at the airport before the flight</span></p></div></div>
   </div>
 </section>
+
+<div class="section-sep"></div>
 
 <!-- ══════════════════ IHRAM ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">الخطوة الأولى</span><span class="en-only">FIRST STEP</span></div>
     <h2 class="section-title"><span class="ar-only">الإحرام — لباس الحج وحالته</span><span class="en-only">Ihram — The Sacred State</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
   </div>
   <div class="ihram-container">
-    <div class="ihram-box">
-      <h3>👨 <span class="ar-only">للرجال</span><span class="en-only">For Men</span></h3>
+    <div class="ihram-box fade-in">
+      <h3><span style="font-size:1.4rem">👨</span> <span class="ar-only">للرجال</span><span class="en-only">For Men</span></h3>
       <ul>
         <li><span class="ar-only">ثوبان أبيضان: إزار (اسفل) ورداء (أعلى) غير مخيطين</span><span class="en-only">Two white unstitched cloths: Izar (lower) and Rida' (upper)</span></li>
         <li><span class="ar-only">الرأس مكشوف — لا يجوز تغطيته</span><span class="en-only">Head must remain uncovered</span></li>
@@ -537,8 +1497,8 @@ footer p{color:var(--text-dim);font-size:0.85rem}
         <li><span class="ar-only">الرمَل (الاضطباع): إظهار الكتف الأيمن في الأشواط الثلاثة الأولى من الطواف</span><span class="en-only">Idtiba': bare right shoulder during first 3 rounds of Tawaf</span></li>
       </ul>
     </div>
-    <div class="ihram-box">
-      <h3>👩 <span class="ar-only">للمرأة</span><span class="en-only">For Women</span></h3>
+    <div class="ihram-box fade-in">
+      <h3><span style="font-size:1.4rem">👩</span> <span class="ar-only">للمرأة</span><span class="en-only">For Women</span></h3>
       <ul>
         <li><span class="ar-only">ملابس شرعية عادية — لا اشتراط للون الأبيض</span><span class="en-only">Regular modest Islamic clothing — white not required</span></li>
         <li><span class="ar-only">لا نقاب ولا قفازات في حالة الإحرام</span><span class="en-only">No niqab and no gloves while in Ihram state</span></li>
@@ -546,8 +1506,8 @@ footer p{color:var(--text-dim);font-size:0.85rem}
         <li><span class="ar-only">المحرم: ضرورة شرعية للمرأة التي لم تتجاوز ٤٥ عاماً (يختلف حسب المذهب)</span><span class="en-only">Mahram: required for women (rules vary by school of thought and age)</span></li>
       </ul>
     </div>
-    <div class="ihram-box" style="grid-column:1/-1">
-      <h3>🛁 <span class="ar-only">خطوات دخول الإحرام</span><span class="en-only">Steps to Enter Ihram</span></h3>
+    <div class="ihram-box fade-in" style="grid-column:1/-1">
+      <h3><span style="font-size:1.4rem">🛁</span> <span class="ar-only">خطوات دخول الإحرام</span><span class="en-only">Steps to Enter Ihram</span></h3>
       <ul>
         <li><span class="ar-only">الاغتسال والتطيب قبل ارتداء ثوب الإحرام (لا بعده)</span><span class="en-only">Perform Ghusl (ritual bath) and apply perfume BEFORE wearing Ihram garments (not after)</span></li>
         <li><span class="ar-only">ارتداء ملابس الإحرام — ركعتان سنة الإحرام</span><span class="en-only">Wear Ihram garments — Pray 2 rak'ahs (Sunnah of Ihram)</span></li>
@@ -555,16 +1515,17 @@ footer p{color:var(--text-dim);font-size:0.85rem}
         <li><span class="ar-only">البدء بالتلبية بصوت مرفوع (الرجال) أو بصوت خفيض (النساء)</span><span class="en-only">Begin reciting Talbiyah aloud (men) or quietly (women)</span></li>
       </ul>
     </div>
-    <div class="talbiyah-box">
+    <div class="talbiyah-box fade-in">
       <span class="talbiyah-label">📣 <span class="ar-only">التلبية — تُردَّد في كل الأوقات</span><span class="en-only">TALBIYAH — To be repeated throughout Hajj</span></span>
       <div class="talbiyah-ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ،<br>إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ</div>
       <div class="talbiyah-en">"Here I am O Allah, here I am. Here I am, You have no partner, here I am.<br>Verily all praise and blessings are Yours, and all sovereignty — You have no partner."</div>
     </div>
-    <div class="ihram-box" style="grid-column:1/-1;border-color:rgba(220,60,60,0.4)">
-      <h3 style="color:#FF9999">🚫 <span class="ar-only">محظورات الإحرام</span><span class="en-only">Prohibitions of Ihram</span></h3>
-      <div class="prohib-grid" style="margin-top:1rem">
+    <!-- Prohibitions -->
+    <div class="prohib-section fade-in">
+      <h3><span style="font-size:1.4rem">🚫</span> <span class="ar-only">محظورات الإحرام</span><span class="en-only">Prohibitions of Ihram</span></h3>
+      <div class="prohib-grid">
         <div class="prohib-col both-col">
-          <h3><span class="ar-only">⚠️ محظورة على الجميع</span><span class="en-only">⚠️ Prohibited for All</span></h3>
+          <h3>⚠️ <span class="ar-only">محظورة على الجميع</span><span class="en-only">Prohibited for All</span></h3>
           <ul>
             <li><span class="ar-only">قص الشعر أو الأظافر</span><span class="en-only">Cutting hair or nails</span></li>
             <li><span class="ar-only">استخدام الطيب والعطور</span><span class="en-only">Using perfume or fragrance</span></li>
@@ -575,280 +1536,243 @@ footer p{color:var(--text-dim);font-size:0.85rem}
           </ul>
         </div>
         <div class="prohib-col men-col">
-          <h3><span class="ar-only">👨 خاصة بالرجال</span><span class="en-only">👨 Men Only</span></h3>
+          <h3>👨 <span class="ar-only">خاصة بالرجال</span><span class="en-only">Men Only</span></h3>
           <ul>
             <li><span class="ar-only">تغطية الرأس بأي غطاء ملامس</span><span class="en-only">Covering the head with any fitted cover</span></li>
             <li><span class="ar-only">لبس الملابس المخيطة</span><span class="en-only">Wearing stitched fitted clothing</span></li>
           </ul>
-          <h3 style="margin-top:1rem"><span class="ar-only">👩 خاصة بالنساء</span><span class="en-only">👩 Women Only</span></h3>
-          <ul>
-            <li><span class="ar-only">لبس النقاب وتغطية الوجه بملامس</span><span class="en-only">Wearing niqab (face-fitting veil)</span></li>
-            <li><span class="ar-only">لبس القفازات</span><span class="en-only">Wearing gloves</span></li>
-          </ul>
+          <div style="margin-top:1rem">
+            <h3>👩 <span class="ar-only">خاصة بالنساء</span><span class="en-only">Women Only</span></h3>
+            <ul style="margin-top:0.5rem">
+              <li><span class="ar-only">ارتداء النقاب والقفازات</span><span class="en-only">Wearing the niqab (face veil) or gloves</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ ARRIVAL — TAWAF & SA'I ══════════════════ -->
+<div class="section-sep"></div>
+
+<!-- ══════════════════ DAYS TIMELINE ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
-    <div class="section-tag"><span class="ar-only">الوصول إلى مكة</span><span class="en-only">ARRIVAL IN MECCA</span></div>
-    <h2 class="section-title"><span class="ar-only">طواف القدوم والسعي</span><span class="en-only">Arrival Tawaf & Sa'i</span></h2>
-    <div class="section-line"></div>
-    <p class="section-sub"><span class="ar-only">عند وصولك إلى المسجد الحرام قبل يوم التروية (٨ ذي الحجة)</span><span class="en-only">Upon arriving at the Grand Mosque before the 8th of Dhul Hijjah</span></p>
-  </div>
-  <div class="steps-container" style="border-radius:var(--r-lg);border:1px solid var(--border-gold)">
-    <div class="step-item" onclick="toggleStep(this)">
-      <div class="step-num-badge">١</div>
-      <div class="step-body">
-        <span class="step-title-en">ENTERING AL-MASJID AL-HARAM</span>
-        <div class="step-title"><span class="ar-only">الدخول من باب السلام</span><span class="en-only">Entering Al-Masjid Al-Haram</span></div>
-        <div class="step-desc"><span class="ar-only">الدخول بالقدم اليمنى قائلاً: «بسم الله والصلاة والسلام على رسول الله. اللهم افتح لي أبواب رحمتك»</span><span class="en-only">Enter with right foot saying: "Bismillah, wa al-salatu wa al-salamu 'ala rasulillah. Allahumma aftah li abwab rahmatik"</span></div>
-        <span class="step-tag tag-sunnah"><span class="ar-only">سنة</span><span class="en-only">Sunnah</span></span>
-        <div class="step-expand">
-          <ul>
-            <li><span class="ar-only">أفضل الأبواب: باب السلام أو باب عبد العزيز</span><span class="en-only">Best entrance: Bab al-Salam or Bab Abd al-Aziz</span></li>
-            <li><span class="ar-only">عند رؤية الكعبة: رفع اليدين والدعاء — الدعاء مستجاب هنا</span><span class="en-only">Upon first seeing the Ka'aba: raise hands and supplicate — du'aa is accepted here</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="step-item" onclick="toggleStep(this)">
-      <div class="step-num-badge">٢</div>
-      <div class="step-body">
-        <span class="step-title-en">TAWAF AL-QUDUM — ARRIVAL CIRCUMAMBULATION</span>
-        <div class="step-title"><span class="ar-only">طواف القدوم — ٧ أشواط حول الكعبة</span><span class="en-only">Tawaf al-Qudum — 7 Rounds Around the Ka'aba</span></div>
-        <div class="step-desc"><span class="ar-only">سبعة أشواط حول الكعبة، الكعبة دائماً على يسارك، تبدأ وتنتهي عند الحجر الأسود</span><span class="en-only">Seven rounds counterclockwise, Ka'aba always on your left, starting and ending at the Black Stone</span></div>
-        <span class="step-tag tag-wajib"><span class="ar-only">واجب للآفاقي</span><span class="en-only">Wajib for non-Meccan</span></span>
-        <div class="step-expand">
-          <ul>
-            <li><span class="ar-only">ابدأ من الحجر الأسود — استقبله وقبّله أو أشِر إليه بيمينك قائلاً: «بسم الله والله أكبر»</span><span class="en-only">Start at the Black Stone — kiss it, touch it, or point to it with right hand saying "Bismillah, Allahu Akbar"</span></li>
-            <li><span class="ar-only">الاضطباع: كشف الكتف الأيمن في كل الأشواط السبعة</span><span class="en-only">Idtiba': right shoulder bare throughout all 7 rounds (men only)</span></li>
-            <li><span class="ar-only">الرَّمَل: الإسراع في المشي في الأشواط الثلاثة الأولى (للرجال)</span><span class="en-only">Raml: brisk walking in the first 3 rounds (men only)</span></li>
-            <li><span class="ar-only">الركن اليماني: مَسِّه إن استطعت بيدك اليمنى (ولا تُقبّله) وقل «الله أكبر»</span><span class="en-only">Yemeni Corner: touch with right hand if possible (don't kiss) and say "Allahu Akbar"</span></li>
-            <li><span class="ar-only">بين الركن اليماني والحجر الأسود: «رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ»</span><span class="en-only">Between Yemeni Corner and Black Stone: "Rabbana atina fid-dunya hasanah..."</span></li>
-            <li><span class="ar-only">بعد الطواف: صلِّ ركعتين خلف مقام إبراهيم أو في أي مكان بالمسجد</span><span class="en-only">After Tawaf: pray 2 rak'ahs behind Maqam Ibrahim or anywhere in the mosque</span></li>
-          </ul>
-          <div class="hadith"><span class="ar-only">«الطواف بالبيت صلاة إلا أن الله أباح فيه الكلام» — صحيح</span><span class="en-only">"Tawaf around the Ka'aba is a prayer, except that Allah has permitted speech during it." — Sahih</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="step-item" onclick="toggleStep(this)">
-      <div class="step-num-badge">٣</div>
-      <div class="step-body">
-        <span class="step-title-en">SA'I — WALKING BETWEEN SAFA & MARWA</span>
-        <div class="step-title"><span class="ar-only">السعي بين الصفا والمروة — ٧ أشواط</span><span class="en-only">Sa'i Between Safa & Marwa — 7 Trips</span></div>
-        <div class="step-desc"><span class="ar-only">سبعة أشواط من الصفا إلى المروة (شوط) والعودة (شوطان) حتى المروة. إحياءً لذكرى هاجر عليها السلام</span><span class="en-only">7 trips: Safa → Marwa = 1 trip. Marwa → Safa = 2nd. Final trip ends at Marwa. In memory of Hajar (AS)</span></div>
-        <span class="step-tag tag-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></span>
-        <div class="step-expand">
-          <ul>
-            <li><span class="ar-only">ابدأ من الصفا — استقبل القبلة وارفع يديك واذكر الله</span><span class="en-only">Begin at Safa — face Qibla, raise hands, and make du'aa</span></li>
-            <li><span class="ar-only">تلاوة: «إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ» عند بداية السعي</span><span class="en-only">Recite: "Inna al-Safa wa al-Marwata min sha'airillah" at the start</span></li>
-            <li><span class="ar-only">بين العلامتين الخضراوتين: الرَّمَل (الهرولة) للرجال فقط</span><span class="en-only">Between the green markers: Men jog (Raml) — women walk normally</span></li>
-            <li><span class="ar-only">يجوز أداء السعي راكباً لمن يعجز عن المشي</span><span class="en-only">Riding is permitted for those who cannot walk</span></li>
-            <li><span class="ar-only">لا يشترط الطهارة للسعي — لكنها مستحبة</span><span class="en-only">Ritual purity not required for Sa'i (but recommended)</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ DAYS GUIDE ══════════════════ -->
-<section class="fade-in" style="max-width:1200px">
-  <div class="section-header">
-    <div class="section-tag"><span class="ar-only">مناسك الحج يوماً بيوم</span><span class="en-only">DAY-BY-DAY RITUALS</span></div>
-    <h2 class="section-title"><span class="ar-only">خطوات الحج التفصيلية</span><span class="en-only">Detailed Hajj Steps</span></h2>
-    <div class="section-line"></div>
+    <div class="section-tag"><span class="ar-only">أيام الحج</span><span class="en-only">THE HAJJ DAYS</span></div>
+    <h2 class="section-title"><span class="ar-only">رحلة الخمسة أيام</span><span class="en-only">The Five-Day Journey</span></h2>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
+    <p class="section-sub"><span class="ar-only">من ٨ إلى ١٣ ذي الحجة — اختر اليوم لعرض تفاصيل مناسكه</span><span class="en-only">From 8th to 13th Dhul Hijjah — Select a day to view its detailed rituals</span></p>
   </div>
 
   <div class="days-nav">
-    <button class="day-btn active" onclick="showDay('d8')"><span class="ar-only">٨ ذو الحجة · منى</span><span class="en-only">8 Dhul Hijjah · Mina</span></button>
-    <button class="day-btn special" onclick="showDay('d9')"><span class="ar-only">⭐ ٩ ذو الحجة · عرفة</span><span class="en-only">⭐ 9 Dhul Hijjah · Arafah</span></button>
-    <button class="day-btn" onclick="showDay('d10')"><span class="ar-only">١٠ ذو الحجة · العيد</span><span class="en-only">10 Dhul Hijjah · Eid</span></button>
-    <button class="day-btn" onclick="showDay('d11')"><span class="ar-only">١١-١٣ التشريق</span><span class="en-only">11-13 Tashreeq</span></button>
+    <button class="day-btn active" onclick="showDay('d8',this)">
+      <span class="ar-only">٨ ذو الحجة · منى</span><span class="en-only">8th · Mina</span>
+    </button>
+    <button class="day-btn special" onclick="showDay('d9',this)">
+      ⭐ <span class="ar-only">٩ ذو الحجة · عرفة</span><span class="en-only">9th · Arafah</span>
+    </button>
+    <button class="day-btn" onclick="showDay('d10',this)">
+      <span class="ar-only">١٠ ذو الحجة · العيد</span><span class="en-only">10th · Eid</span>
+    </button>
+    <button class="day-btn" onclick="showDay('d11',this)">
+      <span class="ar-only">١١-١٣ التشريق</span><span class="en-only">11–13 Tashreeq</span>
+    </button>
   </div>
 
   <!-- DAY 8 -->
   <div class="day-content active" id="d8">
     <div class="day-header">
-      <div class="day-num"><span>٨</span><span><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
+      <div class="day-num"><span class="dn-num">٨</span><span class="dn-label"><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
       <div class="day-title-group">
         <h2><span class="ar-only">يوم التروية — منى</span><span class="en-only">Day of Tarwiyah — Mina</span></h2>
-        <p><span class="ar-only">يوم الانطلاق إلى منى والاستعداد ليوم عرفة العظيم</span><span class="en-only">The day of departure to Mina, preparing for the great Day of Arafah</span></p>
+        <p><span class="ar-only">يوم الانطلاق إلى منى والاستعداد ليوم عرفة العظيم</span><span class="en-only">The departure day to Mina — preparing for the great Day of Arafah</span></p>
       </div>
     </div>
-    <div class="day-alert"><span class="ar-only">📍 الانطلاق إلى منى يكون بعد صلاة الفجر أو الضحى — قبل الظهر يُستحب</span><span class="en-only">📍 Move to Mina after Fajr prayer or in the morning — preferably before Dhuhr</span></div>
+    <div class="day-alert">
+      🕐 <span class="ar-only">الانطلاق إلى منى يكون بعد صلاة الفجر أو الضحى — قبل الظهر يُستحب</span>
+      <span class="en-only">Depart to Mina after Fajr or Duha prayer — before Dhuhr is recommended</span>
+    </div>
     <div class="steps-container">
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">١</div>
+        <div class="step-badge step-badge-gold">١</div>
         <div class="step-body">
           <span class="step-title-en">MOVE TO MINA</span>
-          <div class="step-title"><span class="ar-only">التوجه إلى منى</span><span class="en-only">Moving to Mina</span></div>
-          <div class="step-desc"><span class="ar-only">بعد شروق شمس الثامن، التوجه إلى منى بالحافلة أو المشياً — المسافة قريبة من المسجد الحرام</span><span class="en-only">After sunrise of the 8th, proceed to Mina by bus or on foot — it's close to the Grand Mosque</span></div>
+          <div class="step-title"><span class="ar-only">التوجه إلى منى</span><span class="en-only">Move to Mina</span></div>
+          <div class="step-desc"><span class="ar-only">بعد شروق شمس الثامن، التوجه إلى منى بالحافلة أو المشيا — المسافة قريبة من المسجد الحرام</span><span class="en-only">After sunrise on the 8th, travel to Mina by bus or on foot — short distance from Al-Masjid Al-Haram</span></div>
           <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">استمر في ترديد التلبية طوال الطريق</span><span class="en-only">Continue reciting Talbiyah throughout the journey</span></li><li><span class="ar-only">الإكثار من الذكر والدعاء والقرآن</span><span class="en-only">Engage in abundant dhikr, du'aa, and Quran recitation</span></li></ul></div>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٢</div>
+        <div class="step-badge step-badge-gold">٢</div>
         <div class="step-body">
-          <span class="step-title-en">PRAYER IN MINA — QASR (SHORTENING)</span>
-          <div class="step-title"><span class="ar-only">صلاة الظهر والعصر والمغرب والعشاء والفجر قصراً في منى</span><span class="en-only">Praying Dhuhr, Asr, Maghrib, Isha & Fajr Shortened in Mina</span></div>
-          <div class="step-desc"><span class="ar-only">تُقصَر الصلوات الرباعية إلى ركعتين ولا تُجمَع في منى — المغرب ثلاث ركعات كاملة</span><span class="en-only">4-rak'ah prayers are shortened to 2 but NOT combined in Mina — Maghrib remains 3 rak'ahs</span></div>
-          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">الصلاة في مسجد الخيف بمنى لها فضل عظيم</span><span class="en-only">Praying in Masjid al-Khayf in Mina carries great reward</span></li><li><span class="ar-only">السنة: المبيت في منى ليلة التاسع</span><span class="en-only">Sunnah: spending the night of the 9th in Mina</span></li></ul></div>
-        </div>
-      </div>
-      <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٣</div>
-        <div class="step-body">
-          <span class="step-title-en">NIGHT IN MINA</span>
-          <div class="step-title"><span class="ar-only">المبيت بمنى وإحياء الليلة</span><span class="en-only">Spending the Night in Mina</span></div>
-          <div class="step-desc"><span class="ar-only">قضاء ليلة الثامن في منى — إحياؤها بالدعاء والذكر والاستعداد ليوم عرفة</span><span class="en-only">Spend the night of the 8th in Mina — revive it with du'aa, dhikr, and preparation for Arafah</span></div>
+          <span class="step-title-en">FIVE PRAYERS IN MINA</span>
+          <div class="step-title"><span class="ar-only">الصلوات الخمس في منى</span><span class="en-only">Five Prayers in Mina</span></div>
+          <div class="step-desc"><span class="ar-only">إقامة صلوات الظهر والعصر والمغرب والعشاء والفجر في منى — الصلاة قصراً (ركعتان) دون جمع</span><span class="en-only">Pray Dhuhr, Asr, Maghrib, Isha, and Fajr in Mina — Qasr (shortened) without combining</span></div>
           <span class="step-tag tag-sunnah"><span class="ar-only">سنة</span><span class="en-only">Sunnah</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">الاستيقاظ مبكراً لصلاة الفجر والتوجه إلى عرفة</span><span class="en-only">Wake up early for Fajr prayer and prepare to move to Arafah</span></li><li><span class="ar-only">خذ معك ما يكفيك من الماء والطعام والأدوية</span><span class="en-only">Bring sufficient water, food, and medication</span></li></ul></div>
+          <div class="step-expand"><div class="step-expand-inner"><ul>
+            <li><span class="ar-only">الصلاة قصراً: الظهر والعصر والعشاء ركعتان (بدل أربع)</span><span class="en-only">Shortened prayers: Dhuhr, Asr, Isha become 2 rak'ahs instead of 4</span></li>
+            <li><span class="ar-only">المغرب والفجر لا تُقصران — تؤدَّيان كاملتين</span><span class="en-only">Maghrib and Fajr are not shortened — performed in full</span></li>
+            <li><span class="ar-only">الإكثار من التلبية والذكر والدعاء طوال الليل</span><span class="en-only">Increase Talbiyah, dhikr and du'aa throughout the night</span></li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="step-item" onclick="toggleStep(this)">
+        <div class="step-badge step-badge-gold">٣</div>
+        <div class="step-body">
+          <span class="step-title-en">OVERNIGHT STAY IN MINA</span>
+          <div class="step-title"><span class="ar-only">المبيت في منى ليلة التاسع</span><span class="en-only">Overnight Stay in Mina</span></div>
+          <div class="step-desc"><span class="ar-only">المبيت في منى ليلة التاسع من ذي الحجة والتهيؤ الروحي ليوم عرفة العظيم</span><span class="en-only">Overnight in Mina on the night of the 9th — spiritual preparation for the great Day of Arafah</span></div>
+          <span class="step-tag tag-sunnah"><span class="ar-only">سنة مستحبة</span><span class="en-only">Recommended Sunnah</span></span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DAY 9 — ARAFAH -->
+  <!-- DAY 9 -->
   <div class="day-content" id="d9">
     <div class="day-header green">
-      <div class="day-num green"><span>٩</span><span><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
+      <div class="day-num green"><span class="dn-num">٩</span><span class="dn-label"><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
       <div class="day-title-group">
-        <h2 class="green-text"><span class="ar-only">⭐ يوم عرفة — أعظم أيام السنة</span><span class="en-only">⭐ Day of Arafah — Greatest Day of the Year</span></h2>
-        <p><span class="ar-only">«الحج عرفة» — الوقوف بعرفة هو الركن الأعظم في الحج · لا حج بدونه</span><span class="en-only">"Hajj IS Arafah" — Standing at Arafah is the greatest pillar · No Hajj without it</span></p>
+        <h2 class="green-text"><span class="ar-only">يوم عرفة — أعظم أيام الحج</span><span class="en-only">Day of Arafah — Greatest Day of Hajj</span></h2>
+        <p><span class="ar-only">«الحج عرفة» — الوقوف بعرفة الركن الأعظم من أركان الحج</span><span class="en-only">"Hajj is Arafah" — the greatest pillar of Hajj</span></p>
       </div>
     </div>
-    <div class="day-alert green"><span class="ar-only">🌟 هذا هو قلب الحج وروحه — من فاته الوقوف بعرفة قبل طلوع فجر العاشر فقد فاته الحج · اغتنم كل دقيقة في الدعاء والذكر</span><span class="en-only">🌟 This is the heart and soul of Hajj — whoever misses Arafah before Fajr of the 10th has missed Hajj entirely · Make every minute count</span></div>
+    <div class="day-alert green">
+      ⭐ <span class="ar-only">وقت الوقوف: من زوال شمس التاسع حتى فجر العاشر — من فاته هذا الوقت فقد فاته الحج</span>
+      <span class="en-only">Standing time: from Dhuhr of the 9th until Fajr of the 10th — missing this means missing Hajj entirely</span>
+    </div>
     <div class="steps-container">
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge green">١</div>
+        <div class="step-badge step-badge-green">١</div>
         <div class="step-body">
-          <span class="step-title-en">MOVE TO ARAFAH AFTER SUNRISE</span>
-          <div class="step-title"><span class="ar-only">التوجه إلى عرفات بعد شروق الشمس</span><span class="en-only">Move to Arafah After Sunrise</span></div>
-          <div class="step-desc"><span class="ar-only">بعد صلاة الفجر في منى، انتظر حتى شروق الشمس ثم توجه إلى عرفات — لا تذهب قبل الشروق</span><span class="en-only">After Fajr prayer in Mina, wait for sunrise THEN move to Arafah — do not leave before sunrise</span></div>
+          <span class="step-title-en">MOVE FROM MINA TO ARAFAH</span>
+          <div class="step-title"><span class="ar-only">التوجه من منى إلى عرفة</span><span class="en-only">Move from Mina to Arafah</span></div>
+          <div class="step-desc"><span class="ar-only">بعد شروق شمس اليوم التاسع، التوجه إلى أرض عرفة — التلبية في الطريق</span><span class="en-only">After sunrise on the 9th, travel to the plain of Arafah — recite Talbiyah along the way</span></div>
           <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">الحدود الجغرافية لعرفات محددة — تأكد أنك داخل الحدود</span><span class="en-only">The geographical boundaries of Arafah are marked — ensure you are inside the boundaries</span></li><li><span class="ar-only">مسجد نمرة على حدود عرفة — الجزء الأمامي منه خارجها</span><span class="en-only">Masjid Namirah is on the boundary — its front portion is OUTSIDE Arafah</span></li></ul></div>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge green">٢</div>
+        <div class="step-badge step-badge-green">٢</div>
         <div class="step-body">
-          <span class="step-title-en">WUQUF ARAFAH — THE GREATEST PILLAR</span>
-          <div class="step-title"><span class="ar-only">الوقوف بعرفة — من الزوال حتى الغروب</span><span class="en-only">Wuquf at Arafah — From Dhuhr Until Sunset</span></div>
-          <div class="step-desc"><span class="ar-only">البقاء في عرفة من وقت الزوال (الظهر) حتى غروب الشمس — هذا الوقوف ركن الحج الأعظم</span><span class="en-only">Remaining in Arafah from Dhuhr time until sunset — this standing is THE greatest pillar of Hajj</span></div>
-          <span class="step-tag tag-fard"><span class="ar-only">ركن الأركان</span><span class="en-only">Supreme Pillar</span></span>
-          <div class="step-expand">
-            <ul>
-              <li><span class="ar-only">صلاة الظهر والعصر جمعاً وقصراً (جمع تقديم) مع الإمام في مسجد نمرة</span><span class="en-only">Combine Dhuhr & Asr shortened together (Jam' Taqdim) with the imam at Masjid Namirah</span></li>
-              <li><span class="ar-only">الإكثار من الدعاء — خير الدعاء دعاء يوم عرفة</span><span class="en-only">Make abundant du'aa — the best du'aa is the du'aa of Arafah</span></li>
-              <li><span class="ar-only">أفضل الذكر: «لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير»</span><span class="en-only">Best dhikr: "La ilaha illallahu wahdahu la sharika lah, lahul mulku wa lahul hamdu wa huwa ala kulli shay'in qadir"</span></li>
-              <li><span class="ar-only">الجبل (جبل الرحمة) ليس فرضاً — الوقوف في أي جزء من عرفة صحيح</span><span class="en-only">The mountain (Jabal Rahma) is NOT obligatory — standing anywhere in Arafah is valid</span></li>
-              <li><span class="ar-only">⛔ لا تغادر عرفة قبل غروب الشمس أبداً</span><span class="en-only">⛔ NEVER leave Arafah before sunset</span></div>
-            </ul>
-            <div class="hadith"><span class="ar-only">«خَيرُ الدُّعَاءِ دُعَاءُ يَوْمِ عَرَفَةَ، وَخَيرُ مَا قُلتُ أَنَا وَالنَّبِيُّونَ مِنْ قَبْلِي: لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ» — الترمذي</span><span class="en-only">"The best supplication is the supplication of the Day of Arafah, and the best that I and the Prophets before me have said is: None has the right to be worshipped but Allah alone, without partner." — Al-Tirmidhi</span></div>
-          </div>
+          <span class="step-title-en">SALAT AL-DHUHR & ASR — COMBINED & SHORTENED</span>
+          <div class="step-title"><span class="ar-only">صلاة الظهر والعصر جمعاً وقصراً</span><span class="en-only">Combined & Shortened Dhuhr and Asr</span></div>
+          <div class="step-desc"><span class="ar-only">جمع تقديم الظهر والعصر (ركعتان + ركعتان) مع أذانين وإقامتين — في مسجد نمرة أو حيث كنت</span><span class="en-only">Combine Dhuhr and Asr early (2+2 rak'ahs, two adhans and two iqamas) — at Masjid Namirah or where you stand</span></div>
+          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
+          <div class="step-expand"><div class="step-expand-inner"><div class="hadith">
+            <span class="ar-only">«صلى رسول الله ﷺ الظهر والعصر جمعاً بأذان واحد وإقامتين» — رواه مسلم</span>
+            <span class="en-only">"The Prophet ﷺ prayed Dhuhr and Asr combined with one adhan and two iqamas." — Muslim</span>
+          </div></div></div>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge green">٣</div>
+        <div class="step-badge step-badge-green">٣</div>
         <div class="step-body">
-          <span class="step-title-en">AFTER SUNSET — MOVE TO MUZDALIFAH</span>
-          <div class="step-title"><span class="ar-only">بعد الغروب — الإفاضة إلى مزدلفة</span><span class="en-only">After Sunset — Moving to Muzdalifah</span></div>
-          <div class="step-desc"><span class="ar-only">عند غروب الشمس، التحرك بهدوء ووقار نحو مزدلفة — قطع التلبية عند الوصول</span><span class="en-only">At sunset, move calmly and with dignity toward Muzdalifah — stop reciting Talbiyah upon arrival</span></div>
+          <span class="step-title-en">WUQUF — STANDING ON ARAFAH</span>
+          <div class="step-title"><span class="ar-only">الوقوف بعرفة — الركن الأعظم</span><span class="en-only">Wuquf at Arafah — The Greatest Pillar</span></div>
+          <div class="step-desc"><span class="ar-only">الوقوف في أي مكان من أرض عرفة والإكثار من الدعاء والتضرع والتلبية والاستغفار حتى الغروب</span><span class="en-only">Stand anywhere on the plain of Arafah — immerse in du'aa, supplication, Talbiyah, and seeking forgiveness until sunset</span></div>
+          <span class="step-tag tag-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></span>
+          <div class="step-expand"><div class="step-expand-inner"><ul>
+            <li><span class="ar-only">أفضل الدعاء: «لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير»</span><span class="en-only">Best du'aa: "La ilaha illallah wahdahu la sharika lahu, lahul mulku wa lahul hamdu wa huwa 'ala kulli shay'in qadir"</span></li>
+            <li><span class="ar-only">التوجه للقبلة في الدعاء — رفع اليدين — الدموع والخشوع</span><span class="en-only">Face the Qibla during du'aa — raise hands — tears and humility</span></li>
+            <li><span class="ar-only">«جبل الرحمة» ليس له فضل خاص — الوقوف في أي مكان من عرفة صحيح</span><span class="en-only">Jabal Al-Rahma has no special merit — standing anywhere in Arafah is valid</span></li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="step-item" onclick="toggleStep(this)">
+        <div class="step-badge step-badge-green">٤</div>
+        <div class="step-body">
+          <span class="step-title-en">MOVE TO MUZDALIFAH AFTER SUNSET</span>
+          <div class="step-title"><span class="ar-only">التوجه إلى مزدلفة بعد الغروب</span><span class="en-only">Move to Muzdalifah After Sunset</span></div>
+          <div class="step-desc"><span class="ar-only">بعد غروب الشمس، التوجه إلى مزدلفة بسكينة ووقار — لا التوجه قبل الغروب</span><span class="en-only">After sunset, depart calmly to Muzdalifah — do NOT leave before sunset (that invalidates Hajj)</span></div>
           <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">في مزدلفة: الجمع بين المغرب والعشاء تأخيراً في وقت العشاء</span><span class="en-only">In Muzdalifah: combine Maghrib & Isha at Isha time (Jam' Ta'khir)</span></li><li><span class="ar-only">جمع ٤٩ حصاة على الأقل (٧×٧) لرمي الجمرات أو ٧٠ حصاة تحسباً</span><span class="en-only">Collect at least 49 pebbles (7×7) for stoning, or 70 to be safe</span></li><li><span class="ar-only">المبيت في مزدلفة حتى منتصف الليل على الأقل — والأفضل حتى الفجر</span><span class="en-only">Spend the night in Muzdalifah until at least midnight — preferably until Fajr</span></li><li><span class="ar-only">الضعفاء والنساء: يجوز الإفاضة إلى منى بعد منتصف الليل</span><span class="en-only">Weak, elderly & women: may move to Mina after midnight</span></li></ul></div>
+        </div>
+      </div>
+      <div class="step-item" onclick="toggleStep(this)">
+        <div class="step-badge step-badge-green">٥</div>
+        <div class="step-body">
+          <span class="step-title-en">MAGHRIB & ISHA IN MUZDALIFAH</span>
+          <div class="step-title"><span class="ar-only">المغرب والعشاء جمعاً في مزدلفة</span><span class="en-only">Combined Maghrib & Isha in Muzdalifah</span></div>
+          <div class="step-desc"><span class="ar-only">جمع تأخير: المغرب (٣ ركعات) والعشاء (٢ ركعات) بأذان واحد وإقامتين — ثم جمع الحصى (٤٩ أو ٧٠ حصاة)</span><span class="en-only">Combined (delay): Maghrib 3 + Isha 2 rak'ahs, one adhan, two iqamas — then collect pebbles (49 or 70)</span></div>
+          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
+        </div>
+      </div>
+      <div class="step-item" onclick="toggleStep(this)">
+        <div class="step-badge step-badge-green">٦</div>
+        <div class="step-body">
+          <span class="step-title-en">OVERNIGHT IN MUZDALIFAH</span>
+          <div class="step-title"><span class="ar-only">المبيت في مزدلفة</span><span class="en-only">Overnight Stay in Muzdalifah</span></div>
+          <div class="step-desc"><span class="ar-only">المبيت في مزدلفة حتى الفجر — صلاة الفجر ثم الذكر والدعاء حتى الإسفار — ثم التوجه إلى منى قبل الشروق</span><span class="en-only">Stay overnight in Muzdalifah until Fajr — pray Fajr, then du'aa until light — then move to Mina before sunrise</span></div>
+          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DAY 10 — EID -->
+  <!-- DAY 10 -->
   <div class="day-content" id="d10">
     <div class="day-header">
-      <div class="day-num"><span>١٠</span><span><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
+      <div class="day-num"><span class="dn-num">١٠</span><span class="dn-label"><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
       <div class="day-title-group">
-        <h2><span class="ar-only">يوم النحر — عيد الأضحى المبارك</span><span class="en-only">Yawm al-Nahr — Eid al-Adha</span></h2>
-        <p><span class="ar-only">أعظم يوم عند الله — يوم يؤدى فيه معظم مناسك الحج الكبرى</span><span class="en-only">The greatest day before Allah — most major Hajj rituals are performed on this day</span></p>
+        <h2><span class="ar-only">يوم النحر — عيد الأضحى المبارك</span><span class="en-only">Day of Sacrifice — Eid Al-Adha</span></h2>
+        <p><span class="ar-only">أكثر الأيام أعمالاً — أربعة أعمال في يوم واحد</span><span class="en-only">The busiest day — four major rituals in one day</span></p>
       </div>
     </div>
-    <div class="day-alert"><span class="ar-only">⚡ الترتيب المستحب: رمي الجمرة الكبرى ← الذبح ← الحلق/التقصير ← طواف الإفاضة ← السعي (إن لم يُؤدَّ)</span><span class="en-only">⚡ Recommended order: Stone Large Jamra → Sacrifice → Shave/Cut → Tawaf al-Ifadah → Sa'i (if not done)</span></div>
+    <div class="day-alert">
+      ⏰ <span class="ar-only">الترتيب الأفضل: رمي العقبة → الذبح → الحلق → طواف الإفاضة. لو قُدِّم أو أُخِّر فلا حرج</span>
+      <span class="en-only">Preferred order: Stone Aqabah → Sacrifice → Shave/Trim → Tawaf al-Ifadah. If order changes, no harm</span>
+    </div>
     <div class="steps-container">
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">١</div>
+        <div class="step-badge step-badge-gold">١</div>
         <div class="step-body">
-          <span class="step-title-en">FAJR IN MUZDALIFAH — THEN MOVE TO MINA</span>
-          <div class="step-title"><span class="ar-only">صلاة الفجر في مزدلفة ثم التحرك إلى منى</span><span class="en-only">Fajr Prayer in Muzdalifah — Then Move to Mina</span></div>
-          <div class="step-desc"><span class="ar-only">صلاة الفجر في مزدلفة، ثم الوقوف قليلاً عند المشعر الحرام مع الدعاء، ثم التحرك إلى منى قبل الشروق</span><span class="en-only">Pray Fajr in Muzdalifah, stand briefly at Al-Mash'ar Al-Haram for du'aa, then move to Mina before sunrise</span></div>
+          <span class="step-title-en">STONE JAMRAT AL-AQABAH — 7 PEBBLES</span>
+          <div class="step-title"><span class="ar-only">رمي جمرة العقبة الكبرى — ٧ حصيات</span><span class="en-only">Stone Jamrat Al-Aqabah — 7 Pebbles</span></div>
+          <div class="step-desc"><span class="ar-only">رمي الجمرة الكبرى بسبع حصيات متعاقبات مع التكبير في كل رمية — الجمرة الوحيدة التي تُرمى يوم العيد</span><span class="en-only">Stone the large Jamra with 7 successive pebbles, saying "Allahu Akbar" with each — the only Jamra stoned on Eid day</span></div>
+          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
+          <div class="step-expand"><div class="step-expand-inner"><ul>
+            <li><span class="ar-only">وقت الرمي: من بعد منتصف الليل (لأهل الأعذار) إلى غروب اليوم العاشر</span><span class="en-only">Stoning time: from midnight (for those with excuses) until sunset of the 10th</span></li>
+            <li><span class="ar-only">حجم الحصاة: كحجم حبة اللوبيا أو الحمص — لا يُرمى بالكبيرة</span><span class="en-only">Pebble size: like a chickpea or bean — do not throw large stones</span></li>
+          </ul></div></div>
+        </div>
+      </div>
+      <div class="step-item" onclick="toggleStep(this)">
+        <div class="step-badge step-badge-gold">٢</div>
+        <div class="step-body">
+          <span class="step-title-en">HADY — SACRIFICIAL ANIMAL</span>
+          <div class="step-title"><span class="ar-only">الهدي — ذبح الأضحية</span><span class="en-only">Hady — Sacrificial Animal</span></div>
+          <div class="step-desc"><span class="ar-only">ذبح الهدي (يجوز التوكيل) — واجب على المتمتع والقارن. الحاج المفرد لا يلزمه الهدي إلا تطوعاً</span><span class="en-only">Slaughter the Hady animal (delegation is permitted) — obligatory for Tamattu' and Qiran pilgrims. Ifrad pilgrims are not required but may do so voluntarily</span></div>
           <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٢</div>
+        <div class="step-badge step-badge-gold">٣</div>
         <div class="step-body">
-          <span class="step-title-en">RAMI AL-JAMARAT AL-AQABA — 7 PEBBLES</span>
-          <div class="step-title"><span class="ar-only">رمي جمرة العقبة — ٧ حصيات</span><span class="en-only">Stoning Jamrat Al-Aqaba — 7 Pebbles</span></div>
-          <div class="step-desc"><span class="ar-only">رمي الجمرة الكبرى (العقبة) بسبع حصيات متعاقبات مع التكبير بكل رمية. من بعد الشروق إلى ما قبل الفجر التالي</span><span class="en-only">Stone the Large Jamra (Al-Aqaba) with 7 consecutive pebbles, saying "Allahu Akbar" with each throw. From sunrise until before next Fajr.</span></div>
+          <span class="step-title-en">HALQ OR TAQSIR — HAIR</span>
+          <div class="step-title"><span class="ar-only">الحلق أو التقصير</span><span class="en-only">Halq (Shave) or Taqsir (Trim)</span></div>
+          <div class="step-desc"><span class="ar-only">الرجال: الحلق أفضل من التقصير. المرأة: تقصير فقط (أنملة فأكثر من كل ضفيرة). يُحلق/يُقصر بعد الذبح</span><span class="en-only">Men: shaving is more virtuous than trimming. Women: trim only (a fingertip length from each braid). Do after slaughter</span></div>
           <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">حجم الحصاة: كحبة الفول أو البندق — ليس أكبر</span><span class="en-only">Pebble size: similar to a chickpea or hazelnut — not larger</span></li><li><span class="ar-only">الرمي: رمية رمية (واحدة تلو الأخرى) لا يجوز رمي عدة حصيات دفعة واحدة</span><span class="en-only">Throw one pebble at a time — not several together</span></li><li><span class="ar-only">يقطع التلبية بمجرد البدء بالرمي</span><span class="en-only">Stop reciting Talbiyah when you begin stoning</span></li><li><span class="ar-only">أفضل وقت: من بعد الشروق إلى ما قبل الزوال</span><span class="en-only">Best time: from sunrise until before Dhuhr</span></li></ul></div>
+          <div class="step-expand"><div class="step-expand-inner"><div class="hadith">
+            <span class="ar-only">«اللهم اغفر للمحلقين» — قالها ثلاثاً، ثم قال «والمقصرين» — متفق عليه</span>
+            <span class="en-only">"O Allah forgive those who shave" — said three times, then "and those who trim" — Agreed upon</span>
+          </div></div></div>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٣</div>
+        <div class="step-badge step-badge-gold">٤</div>
         <div class="step-body">
-          <span class="step-title-en">NAHR — SACRIFICE (HADY)</span>
-          <div class="step-title"><span class="ar-only">الذبح — الهَدْي</span><span class="en-only">Sacrifice — Al-Hady</span></div>
-          <div class="step-desc"><span class="ar-only">ذبح الهدي (شاة أو بقرة أو ناقة) — يجوز التوكيل عبر البنك الإسلامي للتنمية أو حملة الحج الرسمية</span><span class="en-only">Sacrifice a sheep, cow, or camel — may be delegated through Islamic Development Bank or official Hajj package</span></div>
-          <span class="step-tag tag-wajib"><span class="ar-only">واجب لغير المكي</span><span class="en-only">Wajib for non-Meccan</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">شاة: لشخص واحد. بقرة أو جمل: يجزئ عن ٧ أشخاص</span><span class="en-only">Sheep: for 1 person. Cow or camel: sufficient for 7 persons</span></li><li><span class="ar-only">الذبح في منى أو في مكة المكرمة — أيام النحر ١٠-١٣ ذو الحجة</span><span class="en-only">Slaughter in Mina or Mecca — slaughter days are 10th-13th Dhul Hijjah</span></li></ul></div>
-        </div>
-      </div>
-      <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٤</div>
-        <div class="step-body">
-          <span class="step-title-en">HALQ OR TAQSIR — SHAVE OR TRIM</span>
-          <div class="step-title"><span class="ar-only">الحلق أو التقصير ← التحلل الأول</span><span class="en-only">Shave or Trim → First Tahallul</span></div>
-          <div class="step-desc"><span class="ar-only">حلق رأس الحاج (أفضل) أو تقصير الشعر — للمرأة: قص بمقدار أنملة فقط. بعد هذا يتحلل الحاج التحلل الأول</span><span class="en-only">Men: shave head (better) or trim all hair evenly. Women: cut a fingertip length only. After this: FIRST TAHALLUL is achieved</span></div>
-          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
-          <div class="step-expand">
-            <div class="tahallul-grid">
-              <div class="tahallul-card"><h3><span class="ar-only">التحلل الأول</span><span class="en-only">First Tahallul</span></h3><p><span class="ar-only">بعد الحلق/التقصير — تحل جميع محظورات الإحرام عدا الجماع</span><span class="en-only">After shaving/trimming — all Ihram prohibitions lifted EXCEPT marital relations</span></p><ul class="check-list"><li><span class="ar-only">يجوز ارتداء الملابس العادية</span><span class="en-only">Wear regular clothing</span></li><li><span class="ar-only">يجوز استخدام الطيب</span><span class="en-only">Use perfume</span></li><li><span class="ar-only">يجوز قص الشعر والأظافر</span><span class="en-only">Cut hair & nails</span></li></ul></div>
-              <div class="tahallul-card"><h3><span class="ar-only">التحلل الثاني</span><span class="en-only">Second Tahallul</span></h3><p><span class="ar-only">بعد طواف الإفاضة (والسعي إن لم يُؤدَّ) — يحل كل شيء بما فيه الجماع</span><span class="en-only">After Tawaf al-Ifadah (+ Sa'i if not done) — ALL prohibitions lifted including marital relations</span></p><ul class="check-list"><li><span class="ar-only">يحل الجماع</span><span class="en-only">Marital relations permitted</span></li><li><span class="ar-only">الحج مكتمل المناسك</span><span class="en-only">Hajj rituals completed</span></li></ul></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٥</div>
-        <div class="step-body">
-          <span class="step-title-en">TAWAF AL-IFADAH — THE MAIN TAWAF</span>
-          <div class="step-title"><span class="ar-only">طواف الإفاضة — الركن الثالث</span><span class="en-only">Tawaf Al-Ifadah — Third Pillar</span></div>
-          <div class="step-desc"><span class="ar-only">الطواف الرئيسي الواجب لصحة الحج — ٧ أشواط كطواف القدوم لكن دون اضطباع ورمَل، ملتبساً بثيابك العادية</span><span class="en-only">The main obligatory Tawaf for Hajj validity — 7 rounds like Tawaf al-Qudum but without Idtiba' or Raml, wearing regular clothing</span></div>
-          <span class="step-tag tag-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">وقته: من فجر العاشر إلى ما لا نهاية (لكن الأفضل يوم العاشر)</span><span class="en-only">Time: from Fajr of the 10th with no set end (best: on the 10th itself)</span></li><li><span class="ar-only">بعد الطواف: صلاة ركعتين خلف مقام إبراهيم</span><span class="en-only">After Tawaf: pray 2 rak'ahs behind Maqam Ibrahim</span></li><li><span class="ar-only">ثم الشرب من ماء زمزم والدعاء</span><span class="en-only">Then drink Zamzam water and make du'aa</span></li></ul></div>
-        </div>
-      </div>
-      <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٦</div>
-        <div class="step-body">
-          <span class="step-title-en">SA'I — IF NOT DONE AFTER ARRIVAL TAWAF</span>
-          <div class="step-title"><span class="ar-only">السعي (إن لم يُؤدَّ بعد طواف القدوم)</span><span class="en-only">Sa'i — If Not Performed After Arrival Tawaf</span></div>
-          <div class="step-desc"><span class="ar-only">إن لم تُؤدِّ السعي بعد طواف القدوم، يؤدَّى الآن بعد طواف الإفاضة. بعده يكتمل التحلل الثاني</span><span class="en-only">If Sa'i was not done after Tawaf al-Qudum, perform it now after Tawaf al-Ifadah. This completes the Second Tahallul.</span></div>
+          <span class="step-title-en">TAWAF AL-IFADAH — MAIN TAWAF</span>
+          <div class="step-title"><span class="ar-only">طواف الإفاضة — الطواف الركن</span><span class="en-only">Tawaf Al-Ifadah — The Pillar Tawaf</span></div>
+          <div class="step-desc"><span class="ar-only">طواف الإفاضة: ٧ أشواط حول الكعبة — من أركان الحج ولا يصح الحج بدونه. يؤدى يوم العيد أو بعده</span><span class="en-only">7 rounds around the Ka'aba — a pillar of Hajj that cannot be omitted. Performed on Eid day or after</span></div>
           <span class="step-tag tag-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></span>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٧</div>
+        <div class="step-badge step-badge-gold">٥</div>
         <div class="step-body">
-          <span class="step-title-en">RETURN TO MINA — TASHREEQ NIGHTS</span>
-          <div class="step-title"><span class="ar-only">العودة إلى منى للمبيت (أيام التشريق)</span><span class="en-only">Return to Mina — Spending Tashreeq Nights</span></div>
-          <div class="step-desc"><span class="ar-only">العودة إلى منى قبل غروب اليوم العاشر للمبيت ليالي أيام التشريق (١١، ١٢، ١٣)</span><span class="en-only">Return to Mina before sunset of the 10th to spend the nights of Tashreeq (11th, 12th, 13th)</span></div>
-          <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
+          <span class="step-title-en">SA'I — SAFA AND MARWA</span>
+          <div class="step-title"><span class="ar-only">السعي بين الصفا والمروة</span><span class="en-only">Sa'i Between Safa and Marwa</span></div>
+          <div class="step-desc"><span class="ar-only">٧ أشواط من الصفا إلى المروة وختاماً عند المروة — يؤدَّى بعد طواف الإفاضة إن لم يُؤدَّ بعد طواف القدوم</span><span class="en-only">7 rounds from Safa to Marwa, ending at Marwa — performed after Tawaf al-Ifadah if not done after arrival Tawaf</span></div>
+          <span class="step-tag tag-fard"><span class="ar-only">ركن</span><span class="en-only">Pillar</span></span>
         </div>
       </div>
     </div>
@@ -857,16 +1781,19 @@ footer p{color:var(--text-dim);font-size:0.85rem}
   <!-- DAYS 11-13 -->
   <div class="day-content" id="d11">
     <div class="day-header">
-      <div class="day-num"><span>١١-١٣</span><span><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
+      <div class="day-num"><span class="dn-num" style="font-size:1.1rem">١١-١٣</span><span class="dn-label"><span class="ar-only">ذو الحجة</span><span class="en-only">Dhul Hijjah</span></span></div>
       <div class="day-title-group">
-        <h2><span class="ar-only">أيام التشريق — رمي الجمرات الثلاث</span><span class="en-only">Days of Tashreeq — Stoning All Three Jamarat</span></h2>
+        <h2><span class="ar-only">أيام التشريق — رمي الجمرات الثلاث</span><span class="en-only">Days of Tashreeq — Three Jamarat</span></h2>
         <p><span class="ar-only">أيام أكل وشرب وذكر الله — رمي الجمرات الثلاث يومياً بعد الزوال</span><span class="en-only">Days of eating, drinking, and remembering Allah — stone all three Jamarat daily after Dhuhr</span></p>
       </div>
     </div>
-    <div class="day-alert"><span class="ar-only">⏰ وقت الرمي: من بعد زوال الشمس (الظهر) إلى قبل فجر اليوم التالي. الأفضل: من الزوال إلى الغروب</span><span class="en-only">⏰ Stoning time: from after Dhuhr until before next Fajr. Best: from Dhuhr until sunset</span></div>
+    <div class="day-alert">
+      ⏰ <span class="ar-only">وقت الرمي: من بعد زوال الشمس (الظهر) إلى قبل فجر اليوم التالي. الأفضل: من الزوال إلى الغروب</span>
+      <span class="en-only">Stoning time: from after Dhuhr until before next Fajr. Best: from Dhuhr until sunset</span>
+    </div>
     <div class="steps-container">
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">١</div>
+        <div class="step-badge step-badge-gold">١</div>
         <div class="step-body">
           <span class="step-title-en">JAMRAT AL-SUGHRA — SMALL PILLAR</span>
           <div class="step-title"><span class="ar-only">رمي الجمرة الصغرى — ٧ حصيات</span><span class="en-only">Stone Jamrat Al-Sughra (Small) — 7 Pebbles</span></div>
@@ -875,7 +1802,7 @@ footer p{color:var(--text-dim);font-size:0.85rem}
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٢</div>
+        <div class="step-badge step-badge-gold">٢</div>
         <div class="step-body">
           <span class="step-title-en">JAMRAT AL-WUSTA — MIDDLE PILLAR</span>
           <div class="step-title"><span class="ar-only">رمي الجمرة الوسطى — ٧ حصيات</span><span class="en-only">Stone Jamrat Al-Wusta (Middle) — 7 Pebbles</span></div>
@@ -884,157 +1811,270 @@ footer p{color:var(--text-dim);font-size:0.85rem}
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٣</div>
+        <div class="step-badge step-badge-gold">٣</div>
         <div class="step-body">
-          <span class="step-title-en">JAMRAT AL-AQABA — LARGE PILLAR</span>
+          <span class="step-title-en">JAMRAT AL-AQABAH — LARGE PILLAR</span>
           <div class="step-title"><span class="ar-only">رمي الجمرة الكبرى (العقبة) — ٧ حصيات</span><span class="en-only">Stone Jamrat Al-Aqaba (Large) — 7 Pebbles</span></div>
           <div class="step-desc"><span class="ar-only">الجمرة الثالثة (الكبرى) — ٧ حصيات مع التكبير. لا وقوف للدعاء بعدها — ينصرف مباشرة</span><span class="en-only">Third (large) Jamra — 7 pebbles with takbeer. No du'aa standing after this — depart immediately</span></div>
           <span class="step-tag tag-wajib"><span class="ar-only">واجب</span><span class="en-only">Wajib</span></span>
         </div>
       </div>
       <div class="step-item" onclick="toggleStep(this)">
-        <div class="step-num-badge">٤</div>
+        <div class="step-badge step-badge-gold">٤</div>
         <div class="step-body">
           <span class="step-title-en">NAFR AWWAL OR NAFR THANI</span>
-          <div class="step-title"><span class="ar-only">النفر الأول (١٢ ذو الحجة) أو النفر الثاني (١٣ ذو الحجة)</span><span class="en-only">Early Departure (12th) or Late Departure (13th)</span></div>
+          <div class="step-title"><span class="ar-only">النفر الأول (١٢) أو النفر الثاني (١٣)</span><span class="en-only">Early Departure (12th) or Late Departure (13th)</span></div>
           <div class="step-desc"><span class="ar-only">يجوز الخروج من منى في اليوم الثاني عشر قبل الغروب (النفر الأول) أو في الثالث عشر (النفر الثاني — أفضل وأكثر ثواباً)</span><span class="en-only">You may leave Mina on the 12th before sunset (Nafr Awwal) or on the 13th (Nafr Thani — more virtuous)</span></div>
           <span class="step-tag tag-sunnah"><span class="ar-only">مخيَّر</span><span class="en-only">Optional Choice</span></span>
-          <div class="step-expand"><ul><li><span class="ar-only">إذا غربت الشمس وأنت لا تزال في منى في اليوم الثاني عشر، وجب عليك الرمي في اليوم الثالث عشر</span><span class="en-only">If the sun sets on the 12th while you are still in Mina, you must remain and stone on the 13th</span></li></ul></div>
+          <div class="step-expand"><div class="step-expand-inner"><ul>
+            <li><span class="ar-only">إذا غربت الشمس وأنت لا تزال في منى في اليوم الثاني عشر، وجب عليك الرمي في اليوم الثالث عشر</span><span class="en-only">If the sun sets on the 12th while you are still in Mina, you must remain and stone on the 13th</span></li>
+          </ul></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<div class="section-sep"></div>
+
 <!-- ══════════════════ FAREWELL TAWAF ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">ختام الحج</span><span class="en-only">CONCLUSION OF HAJJ</span></div>
     <h2 class="section-title"><span class="ar-only">طواف الوداع — آخر عهدك بالبيت</span><span class="en-only">Farewell Tawaf — Last Rite</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
   </div>
-  <div class="ihram-box" style="max-width:800px;margin:0 auto">
-    <h3>🕌 <span class="ar-only">طواف الوداع</span><span class="en-only">Tawaf al-Wada'</span></h3>
-    <ul>
-      <li><span class="ar-only">آخر عمل يؤديه الحاج قبل مغادرة مكة المكرمة — ٧ أشواط حول الكعبة</span><span class="en-only">The last act before leaving Mecca — 7 rounds of Tawaf</span></li>
-      <li><span class="ar-only">واجب على جميع الحجاج من خارج مكة (الآفاقيين)</span><span class="en-only">Obligatory for all pilgrims who came from outside Mecca (non-Meccans)</span></li>
-      <li><span class="ar-only">الحائض والنفساء: معفوتان من طواف الوداع</span><span class="en-only">Women in menses or postnatal bleeding are exempt from Tawaf al-Wada'</span></li>
-      <li><span class="ar-only">لا يُبقى في مكة بعده إلا لحاجة ضرورية — يخرج مباشرة</span><span class="en-only">Do not linger in Mecca after it except for necessity — leave directly after</span></li>
-      <li><span class="ar-only">يُستحب: الشرب من ماء زمزم والتوجه إلى الملتزم للدعاء قبل المغادرة</span><span class="en-only">Recommended: drink Zamzam water and stand at Al-Multazam for du'aa before departing</span></li>
-      <li><span class="ar-only">الخروج بالقدم اليسرى قائلاً: «اللهم لا تجعل هذا آخر عهدي ببيتك الحرام»</span><span class="en-only">Exit with left foot saying: "Allahumma la taj'al hadha akhira 'ahdi bi baytikal haram"</span></li>
+  <div class="farewell-box">
+    <h3 style="color:var(--gold-300);font-family:var(--font-ar-display);font-size:1.3rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:10px">
+      <span style="font-size:1.5rem">🕌</span>
+      <span class="ar-only">طواف الوداع</span><span class="en-only">Tawaf al-Wada'</span>
+    </h3>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem">
+      <li style="display:flex;gap:10px;font-size:0.9rem;color:var(--cream-muted);line-height:1.8">
+        <span style="color:var(--gold-400);flex-shrink:0;margin-top:4px">◆</span>
+        <span class="ar-only">آخر عمل يؤديه الحاج قبل مغادرة مكة المكرمة — ٧ أشواط حول الكعبة</span><span class="en-only">The last act before leaving Mecca — 7 rounds of Tawaf</span>
+      </li>
+      <li style="display:flex;gap:10px;font-size:0.9rem;color:var(--cream-muted);line-height:1.8">
+        <span style="color:var(--gold-400);flex-shrink:0;margin-top:4px">◆</span>
+        <span class="ar-only">واجب على جميع الحجاج من خارج مكة (الآفاقيين)</span><span class="en-only">Obligatory for all pilgrims who came from outside Mecca (non-Meccans)</span>
+      </li>
+      <li style="display:flex;gap:10px;font-size:0.9rem;color:var(--cream-muted);line-height:1.8">
+        <span style="color:var(--gold-400);flex-shrink:0;margin-top:4px">◆</span>
+        <span class="ar-only">الحائض والنفساء: معفوتان من طواف الوداع</span><span class="en-only">Women in menses or postnatal bleeding are exempt from Tawaf al-Wada'</span>
+      </li>
+      <li style="display:flex;gap:10px;font-size:0.9rem;color:var(--cream-muted);line-height:1.8">
+        <span style="color:var(--gold-400);flex-shrink:0;margin-top:4px">◆</span>
+        <span class="ar-only">لا يُبقى في مكة بعده إلا لحاجة ضرورية — يخرج مباشرة</span><span class="en-only">Do not linger in Mecca after it except for necessity — leave directly after</span>
+      </li>
+      <li style="display:flex;gap:10px;font-size:0.9rem;color:var(--cream-muted);line-height:1.8">
+        <span style="color:var(--gold-400);flex-shrink:0;margin-top:4px">◆</span>
+        <span class="ar-only">يُستحب: الشرب من ماء زمزم والتوجه إلى الملتزم للدعاء قبل المغادرة</span><span class="en-only">Recommended: drink Zamzam water and stand at Al-Multazam for du'aa before departing</span>
+      </li>
+      <li style="display:flex;gap:10px;font-size:0.9rem;color:var(--cream-muted);line-height:1.8">
+        <span style="color:var(--gold-400);flex-shrink:0;margin-top:4px">◆</span>
+        <span class="ar-only">الخروج بالقدم اليسرى قائلاً: «اللهم لا تجعل هذا آخر عهدي ببيتك الحرام»</span><span class="en-only">Exit with left foot saying: "Allahumma la taj'al hadha akhira 'ahdi bi baytikal haram"</span>
+      </li>
     </ul>
+    <div class="step-tag tag-wajib" style="margin-top:1.5rem">
+      <span class="ar-only">واجب على غير أهل مكة</span><span class="en-only">Wajib for non-Meccans</span>
+    </div>
   </div>
 </section>
+
+<div class="section-sep"></div>
 
 <!-- ══════════════════ MADINAH ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">زيارة النبي ﷺ</span><span class="en-only">VISITING THE PROPHET ﷺ</span></div>
     <h2 class="section-title"><span class="ar-only">زيارة المدينة المنورة</span><span class="en-only">Visit to Al-Madinah Al-Munawwarah</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
     <p class="section-sub"><span class="ar-only">ليست فريضة من فرائض الحج لكنها سنة مستحبة بشدة — يزورها معظم الحجاج</span><span class="en-only">Not a Hajj obligation but a highly recommended Sunnah — visited by most pilgrims</span></p>
   </div>
   <div class="madinah-grid">
     <div class="madinah-card fade-in">
-      <span class="icon">🕌</span>
+      <div class="madinah-icon">🕌</div>
       <h4><span class="ar-only">المسجد النبوي الشريف</span><span class="en-only">Al-Masjid Al-Nabawi</span></h4>
       <p><span class="ar-only">الصلاة فيه بألف صلاة — ثاني أشرف المساجد في الإسلام</span><span class="en-only">One prayer here equals 1,000 prayers — second holiest mosque in Islam</span></p>
     </div>
     <div class="madinah-card fade-in">
-      <span class="icon">💚</span>
+      <div class="madinah-icon">💚</div>
       <h4><span class="ar-only">الروضة الشريفة</span><span class="en-only">Al-Rawdah Al-Sharifah</span></h4>
       <p><span class="ar-only">«ما بين بيتي ومنبري روضة من رياض الجنة» — الصلاة والدعاء فيها</span><span class="en-only">"Between my house and my pulpit is a garden of Paradise" — pray and supplicate here</span></p>
     </div>
     <div class="madinah-card fade-in">
-      <span class="icon">🌙</span>
+      <div class="madinah-icon">🌙</div>
       <h4><span class="ar-only">قبر النبي ﷺ</span><span class="en-only">The Prophet's Grave ﷺ</span></h4>
       <p><span class="ar-only">السلام على النبي ﷺ: «السلام عليك يا رسول الله، السلام عليك يا نبي الله»</span><span class="en-only">"Peace be upon you, O Messenger of Allah. Peace be upon you, O Prophet of Allah"</span></p>
     </div>
     <div class="madinah-card fade-in">
-      <span class="icon">🏗️</span>
+      <div class="madinah-icon">🏗️</div>
       <h4><span class="ar-only">مسجد قباء</span><span class="en-only">Masjid Quba'</span></h4>
       <p><span class="ar-only">ركعتان فيه تعدل عمرة — أول مسجد بُني في الإسلام</span><span class="en-only">2 rak'ahs here equal the reward of Umrah — first mosque built in Islam</span></p>
     </div>
     <div class="madinah-card fade-in">
-      <span class="icon">🌿</span>
+      <div class="madinah-icon">🌿</div>
       <h4><span class="ar-only">البقيع</span><span class="en-only">Al-Baqi' Cemetery</span></h4>
       <p><span class="ar-only">زيارة صحابة النبي ﷺ وزوجاته وأبنائه — والسلام عليهم والدعاء لهم</span><span class="en-only">Visit the graves of the Prophet's Companions, wives, and children — greet and pray for them</span></p>
     </div>
     <div class="madinah-card fade-in">
-      <span class="icon">⚔️</span>
+      <div class="madinah-icon">⚔️</div>
       <h4><span class="ar-only">جبل أُحد وشهداؤه</span><span class="en-only">Uhud & Its Martyrs</span></h4>
       <p><span class="ar-only">زيارة سيد الشهداء حمزة بن عبد المطلب والسلام على شهداء أُحد</span><span class="en-only">Visit the master of martyrs Hamza (RA) and greet the martyrs of Uhud</span></p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ ESSENTIAL TIPS ══════════════════ -->
+<div class="section-sep"></div>
+
+<!-- ══════════════════ TIPS ══════════════════ -->
 <section class="fade-in">
   <div class="section-header">
     <div class="section-tag"><span class="ar-only">نصائح ضرورية</span><span class="en-only">ESSENTIAL TIPS</span></div>
     <h2 class="section-title"><span class="ar-only">نصائح لحج مقبول</span><span class="en-only">Tips for an Accepted Hajj</span></h2>
-    <div class="section-line"></div>
+    <div class="section-ornament"><div class="ornament-gem"></div></div>
   </div>
   <div class="tips-grid">
-    <div class="tip-card fade-in"><h4><span>🌡️</span><span class="ar-only">الصحة والسلامة</span><span class="en-only">Health & Safety</span></h4><p><span class="ar-only">اصطحب أدويتك الشخصية. تحمّل واقياً من الشمس. اشرب ماء وفيراً كل ساعة. ارتدِ أحذية مريحة. تجنب الخروج وقت ذروة الحرارة</span><span class="en-only">Bring personal medications. Use strong sunscreen. Drink water every hour. Wear comfortable shoes. Avoid going out at peak heat hours.</span></p></div>
-    <div class="tip-card fade-in"><h4><span>📱</span><span class="ar-only">التقنية والتوثيق</span><span class="en-only">Technology & Documents</span></h4><p><span class="ar-only">احتفظ بصورة وثائقك في هاتفك. اكتب رقم خيمتك في منى واحفظه. ثبّت تطبيق نسك الرسمي. شاحن قابل للحمل ضروري</span><span class="en-only">Save ID photos on your phone. Write down your Mina tent number. Install the official Nusuk app. A portable charger is essential.</span></p></div>
-    <div class="tip-card fade-in"><h4><span>🤲</span><span class="ar-only">التهيئة الروحية</span><span class="en-only">Spiritual Preparation</span></h4><p><span class="ar-only">تعلّم مناسك الحج جيداً قبل السفر. حفظ أدعية يوم عرفة والتلبية. ابدأ بالتوبة والاستغفار قبل السفر. أصلح ذات البين مع الناس</span><span class="en-only">Study Hajj rituals thoroughly before traveling. Memorize Arafah du'aas and Talbiyah. Begin with repentance. Reconcile with people before departing.</span></p></div>
-    <div class="tip-card fade-in"><h4><span>👨‍👩‍👧</span><span class="ar-only">التنقل والازدحام</span><span class="en-only">Crowds & Movement</span></h4><p><span class="ar-only">تحرك مبكراً دائماً. حدد نقطة تجمع مع مجموعتك. لا تضغط في الازدحام — انتظر. النساء لا يُفارقن محارمهن</span><span class="en-only">Always move early. Set a meeting point with your group. Don't push in crowds — wait. Women must not be separated from their Mahram.</span></p></div>
-    <div class="tip-card fade-in"><h4><span>😌</span><span class="ar-only">الصبر والأخلاق</span><span class="en-only">Patience & Character</span></h4><p><span class="ar-only">الحج اختبار للصبر والأخلاق. تجنب الجدال والغضب تماماً. «فلا رفث ولا فسوق». خدمة الحجاج من أفضل الأعمال</span><span class="en-only">"No obscenity, no wickedness." Hajj tests your patience and character. Avoid all argument and anger. Serving pilgrims is among the best of deeds.</span></p></div>
-    <div class="tip-card fade-in"><h4><span>💰</span><span class="ar-only">المال والاستعداد</span><span class="en-only">Finance & Preparation</span></h4><p><span class="ar-only">اكتب وصيتك قبل السفر. سدِّد ديونك. اطلب العفو ممن أسأت إليهم. احرص على مال حلال في رحلتك</span><span class="en-only">Write your will before traveling. Settle your debts. Seek forgiveness from those you've wronged. Ensure all funds are from halal sources.</span></p></div>
+    <div class="tip-card fade-in">
+      <h4><div class="tip-icon">🌡️</div><span class="ar-only">الصحة والسلامة</span><span class="en-only">Health & Safety</span></h4>
+      <p><span class="ar-only">اصطحب أدويتك الشخصية. تحمّل واقياً من الشمس. اشرب ماء وفيراً كل ساعة. ارتدِ أحذية مريحة. تجنب الخروج وقت ذروة الحرارة</span><span class="en-only">Bring personal medications. Use strong sunscreen. Drink water every hour. Wear comfortable shoes. Avoid going out at peak heat hours.</span></p>
+    </div>
+    <div class="tip-card fade-in">
+      <h4><div class="tip-icon">📱</div><span class="ar-only">التقنية والتوثيق</span><span class="en-only">Technology & Documents</span></h4>
+      <p><span class="ar-only">احتفظ بصورة وثائقك في هاتفك. اكتب رقم خيمتك في منى واحفظه. ثبّت تطبيق نسك الرسمي. شاحن قابل للحمل ضروري</span><span class="en-only">Save ID photos on your phone. Write down your Mina tent number. Install the official Nusuk app. A portable charger is essential.</span></p>
+    </div>
+    <div class="tip-card fade-in">
+      <h4><div class="tip-icon">🤲</div><span class="ar-only">التهيئة الروحية</span><span class="en-only">Spiritual Preparation</span></h4>
+      <p><span class="ar-only">تعلّم مناسك الحج جيداً قبل السفر. حفظ أدعية يوم عرفة والتلبية. ابدأ بالتوبة والاستغفار قبل السفر. أصلح ذات البين مع الناس</span><span class="en-only">Study Hajj rituals thoroughly before traveling. Memorize Arafah du'aas and Talbiyah. Begin with repentance. Reconcile with people before departing.</span></p>
+    </div>
+    <div class="tip-card fade-in">
+      <h4><div class="tip-icon">👨‍👩‍👧</div><span class="ar-only">التنقل والازدحام</span><span class="en-only">Crowds & Movement</span></h4>
+      <p><span class="ar-only">تحرك مبكراً دائماً. حدد نقطة تجمع مع مجموعتك. لا تضغط في الازدحام — انتظر. النساء لا يُفارقن محارمهن</span><span class="en-only">Always move early. Set a meeting point with your group. Don't push in crowds — wait. Women must not be separated from their Mahram.</span></p>
+    </div>
+    <div class="tip-card fade-in">
+      <h4><div class="tip-icon">😌</div><span class="ar-only">الصبر والأخلاق</span><span class="en-only">Patience & Character</span></h4>
+      <p><span class="ar-only">الحج اختبار للصبر والأخلاق. تجنب الجدال والغضب تماماً. «فلا رفث ولا فسوق». خدمة الحجاج من أفضل الأعمال</span><span class="en-only">"No obscenity, no wickedness." Hajj tests your patience and character. Avoid all argument and anger. Serving pilgrims is among the best of deeds.</span></p>
+    </div>
+    <div class="tip-card fade-in">
+      <h4><div class="tip-icon">💰</div><span class="ar-only">المال والاستعداد</span><span class="en-only">Finance & Preparation</span></h4>
+      <p><span class="ar-only">اكتب وصيتك قبل السفر. سدِّد ديونك. اطلب العفو ممن أسأت إليهم. احرص على مال حلال في رحلتك</span><span class="en-only">Write your will before traveling. Settle your debts. Seek forgiveness from those you've wronged. Ensure all funds are from halal sources.</span></p>
+    </div>
   </div>
 </section>
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer>
-  <div class="footer-logo"><span class="ar-only">مناسك الحج </span><span class="en-only"> Hajj Manasik</span></div>
-  <div class="footer-ayah">
-    <div class="ayah-ar">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</div>
-    <div class="talbiyah-en">"Complete the Hajj and Umrah for Allah." — Quran 2:196</div>
+  <div class="footer-logo">
+    <span class="ar-only">مناسك الحج</span>
+    <span class="en-only">Hajj Manasik</span>
+  </div>
+  <div class="footer-ayah-card">
+    <div class="ayah-arabic">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</div>
+    <div class="ayah-translation">"Complete the Hajj and Umrah for Allah."</div>
     <div class="ayah-ref">[البقرة: ١٩٦] · Al-Baqarah: 196</div>
   </div>
-  <p style="margin-top:1rem"><span class="ar-only">تقبّل الله حجكم ومناسككم · حج مبرور وسعي مشكور وذنب مغفور</span><span class="en-only">May Allah accept your Hajj and rituals · A blessed Hajj, a praised effort, and forgiven sins</span></p>
-  <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-dim)"><span class="ar-only">المعلومات الواردة للتوجيه العام — يُرجى الرجوع للعلماء المختصين وحملات الحج الرسمية</span><span class="en-only">Information provided for general guidance — please consult qualified scholars and official Hajj organizations</span></p>
+  <p class="footer-dua">
+    <span class="ar-only">تقبّل الله حجكم ومناسككم · حج مبرور وسعي مشكور وذنب مغفور</span>
+    <span class="en-only">May Allah accept your Hajj and rituals · A blessed Hajj, a praised effort, and forgiven sins</span>
+  </p>
+  <p style="margin-top:1.2rem">
+    <span class="ar-only">المعلومات الواردة للتوجيه العام — يُرجى الرجوع للعلماء المختصين وحملات الحج الرسمية</span>
+    <span class="en-only">Information provided for general guidance — please consult qualified scholars and official Hajj organizations</span>
+  </p>
 </footer>
+
 </div><!-- end content-wrap -->
 
 <script>
+/* ── STATE ── */
 var isAr = true;
+
+/* ── LANGUAGE TOGGLE ── */
 function toggleLang(){
   isAr = !isAr;
   var root = document.getElementById('html-root');
   var body = document.getElementById('body-root');
   var label = document.getElementById('lang-label');
   if(isAr){
-    root.setAttribute('lang','ar');root.setAttribute('dir','rtl');
-    body.className='';label.textContent='English';
+    root.setAttribute('lang','ar');
+    root.setAttribute('dir','rtl');
+    body.className='';
+    label.textContent='English';
   } else {
-    root.setAttribute('lang','en');root.setAttribute('dir','ltr');
-    body.className='en';label.textContent='العربية';
+    root.setAttribute('lang','en');
+    root.setAttribute('dir','ltr');
+    body.className='en';
+    label.textContent='العربية';
   }
 }
-function showDay(id){
-  document.querySelectorAll('.day-content').forEach(function(d){d.classList.remove('active')});
-  document.querySelectorAll('.day-btn').forEach(function(b){b.classList.remove('active')});
+
+/* ── DAY TABS ── */
+function showDay(id, btn){
+  document.querySelectorAll('.day-content').forEach(function(d){
+    d.classList.remove('active');
+  });
+  document.querySelectorAll('.day-btn').forEach(function(b){
+    b.classList.remove('active');
+  });
   document.getElementById(id).classList.add('active');
-  event.currentTarget.classList.add('active');
+  if(btn) btn.classList.add('active');
 }
+
+/* ── STEP ACCORDION ── */
 function toggleStep(el){
   var exp = el.querySelector('.step-expand');
-  if(exp) exp.classList.toggle('open');
+  if(!exp) return;
+  var isOpen = exp.classList.contains('open');
+  // close others in same container
+  var container = el.closest('.steps-container');
+  if(container){
+    container.querySelectorAll('.step-expand.open').forEach(function(e){
+      if(e !== exp) e.classList.remove('open');
+    });
+  }
+  exp.classList.toggle('open',!isOpen);
 }
+
+/* ── SCROLL EFFECTS ── */
+var ticking = false;
 window.addEventListener('scroll',function(){
-  var scrolled = (window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
-  document.getElementById('scroll-bar').style.width = Math.min(scrolled,100)+'%';
-  document.querySelectorAll('.fade-in').forEach(function(el){
+  if(!ticking){
+    requestAnimationFrame(function(){
+      // Progress bar
+      var scrolled = (window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+      var bar = document.getElementById('scroll-bar');
+      if(bar) bar.style.width = Math.min(scrolled,100)+'%';
+      // Header scroll class
+      var header = document.getElementById('main-header');
+      if(header){
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      }
+      // Fade in elements
+      revealElements();
+      ticking = false;
+    });
+    ticking = true;
+  }
+},{ passive:true });
+
+function revealElements(){
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el){
     var rect = el.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 80) el.classList.add('visible');
+    if(rect.top < window.innerHeight - 60){
+      el.classList.add('visible');
+    }
   });
-});
-document.querySelectorAll('.fade-in').forEach(function(el){
-  var rect = el.getBoundingClientRect();
-  if(rect.top < window.innerHeight) el.classList.add('visible');
-});
+}
+
+// Initial reveal
+revealElements();
+
+/* ── SMOOTH PARALLAX for bg stars ── */
+window.addEventListener('scroll', function(){
+  var offset = window.scrollY * 0.15;
+  var stars = document.querySelector('.bg-stars');
+  if(stars) stars.style.transform = 'translateY('+offset+'px)';
+}, { passive:true });
 </script>
 </body>
 </html>
